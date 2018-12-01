@@ -111,8 +111,7 @@ public class PlayScene extends BorderPane{
 		label1.setFont(Font.font(30));
 		
 		firstChar.getChildren().addAll(firstCanvas, label1);
-		String imageFirst = "file:image/Great.jpg";
-		Image img1 = new Image(ClassLoader.getSystemResource(imageFirst).toString());
+		Image img1 = new Image(ClassLoader.getSystemResource("Great.jpg").toString());
 		firstGC.drawImage(img1, 0, 0, 180, 180);
 		this.setFirstCharAction();
 		
@@ -126,8 +125,7 @@ public class PlayScene extends BorderPane{
 		label2.setFont(Font.font(30));
 		
 		secondChar.getChildren().addAll(secondCanvas, label2);
-		String imageSecond = "file:image/Jiji.jpg";
-		Image img2 = new Image(ClassLoader.getSystemResource(imageSecond).toString());
+		Image img2 = new Image(ClassLoader.getSystemResource("Jiji.jpg").toString());
 		secondGC.drawImage(img2, 0, 0, 180, 180);
 		this.setSecondCharAction();
 		
@@ -141,8 +139,7 @@ public class PlayScene extends BorderPane{
 		label3.setFont(Font.font(30));
 		
 		thirdChar.getChildren().addAll(thirdCanvas, label3);
-		String imageThird = "file:image/SoSo.jpg";
-		Image img3 = new Image(ClassLoader.getSystemResource(imageThird).toString());
+		Image img3 = new Image(ClassLoader.getSystemResource("SoSo.jpg").toString());
 		thirdGC.drawImage(img3, 0, 0, 180, 180);
 		this.setThirdCharAction();
 		
