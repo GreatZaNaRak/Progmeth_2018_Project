@@ -32,6 +32,7 @@ public class BattleScene extends BorderPane{
 	private static Image enemy3, enemy4, enemy5;
 	private static Button back, action, EndTurn, normalAttack, skill1, skill2;
 	public static Label char1health, char2health, char3health, enemyHealth1, enemyHealth2;
+	public static Label char1mana,char2mana,char3mana;
 	public static Label enemyHealth3, enemyHealth4, enemyHealth5;
 	private static AllCharacter allChar;
 	private static HBox box;

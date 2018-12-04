@@ -10,26 +10,26 @@ public class AllCharacter {
 	public AllCharacter() {
 		
 		Character cloud = new Character("Cloud", 35, 15, 200, 100);
-		cloud.addSkill("slash", 25, "damage", 30, "???");
-		cloud.addSkill("warcry", 50, "Debuff", 30, "???");
+		cloud.addSkill("Slash", 25, "damage", 30, "-");
+		cloud.addSkill("Warcry", 50, "Debuff", 30, "attack");
 		
 		Character tifa = new Character("Tifa", 20, 7, 120, 200);
-		tifa.addSkill("heal", 30, "heal", 30, "???");
-		tifa.addSkill("fear", 50, "Debuff", 30, "???");
+		tifa.addSkill("Heal", 30, "heal", 30, "-");
+		tifa.addSkill("Fear", 50, "Debuff", 30, "defend");
 		
 		Character vincent = new Character("Vincent", 30, 10, 150, 150);
-		vincent.addSkill("tackle", 30, "damage", 50, "???");
-		vincent.addSkill("resist", 50, "Debuff", 40, "???");
+		vincent.addSkill("Tackle", 30, "damage", 50, "-");
+		vincent.addSkill("Resist", 50, "Debuff", 40, "defend");
 		
 		myHero.add(cloud);
 		myHero.add(tifa);
 		myHero.add(vincent);
 		
-		Character ogre = new Character("ogre", 40, 20, 200, 100);
-		Character pyro = new Character("pyro", 40, 20, 120, 200);
-		Character skeleton = new Character("skeleton", 0, 10, 200, 0);
-		Character warlock = new Character("warlock", 60, 10, 120, 250);
-		Character boss = new Character("boss", 100, 50, 400, 400);
+		Character ogre = new Character("Ogre", 40, 20, 200, 100);
+		Character pyro = new Character("Pyro", 40, 20, 120, 200);
+		Character skeleton = new Character("Skeleton", 0, 10, 200, 0);
+		Character warlock = new Character("Warlock", 60, 10, 120, 250);
+		Character boss = new Character("Boss", 100, 50, 400, 400);
 		
 		Characters.add(cloud);
 		Characters.add(tifa);
