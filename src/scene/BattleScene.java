@@ -94,9 +94,9 @@ public class BattleScene extends BorderPane{
 			return;
 		}
 		if (check) resetTurn();
-		char1health.setText(""+AllCharacter.getCharacters().get(0).getHealth()+"/"+AllCharacter.getCharacters().get(0).getMAXHEALTH());
-		char2health.setText(""+AllCharacter.getCharacters().get(1).getHealth()+"/"+AllCharacter.getCharacters().get(1).getMAXHEALTH());
-		char3health.setText(""+AllCharacter.getCharacters().get(2).getHealth()+"/"+AllCharacter.getCharacters().get(2).getMAXHEALTH());
+		char1health.setText("HP: "+AllCharacter.getCharacters().get(0).getHealth()+" MP: "+AllCharacter.getCharacters().get(0).getMana());
+		char2health.setText("HP: "+AllCharacter.getCharacters().get(1).getHealth()+" MP: "+AllCharacter.getCharacters().get(1).getMana());
+		char3health.setText("HP: "+AllCharacter.getCharacters().get(2).getHealth()+" MP: "+AllCharacter.getCharacters().get(2).getMana());
 	}
 	
 	public static void drawCommandBox(int enermyID) {
@@ -245,7 +245,7 @@ public class BattleScene extends BorderPane{
 		
 		VBox charInfo = new VBox();
 		charInfo.setAlignment(Pos.CENTER);
-		charInfo.setPrefWidth(300);
+		charInfo.setPrefWidth(350);
 		charInfo.setSpacing(10);
 		charInfo.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
 		
@@ -253,30 +253,30 @@ public class BattleScene extends BorderPane{
 		char1Info.setSpacing(30);
 		char1Info.setPadding(new Insets(0, 0, 0, 30));
 		Label char1Label = new Label("CLOUD");
-		char1Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+		char1Label.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char1health = new Label();
-		char1health.setText(""+AllCharacter.getCharacters().get(0).getHealth()+"/"+AllCharacter.getCharacters().get(0).getMAXHEALTH());
-		char1health.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+		char1health.setText("HP: "+AllCharacter.getCharacters().get(0).getHealth()+" MP: "+AllCharacter.getCharacters().get(0).getMana());
+		char1health.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char1Info.getChildren().addAll(char1Label, char1health);
 		
 		HBox char2Info = new HBox();
 		char2Info.setSpacing(30);
 		char2Info.setPadding(new Insets(0, 0, 0, 30));
 		Label char2Label = new Label("TIFA");
-		char2Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+		char2Label.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char2health = new Label();
-		char2health.setText(""+AllCharacter.getCharacters().get(1).getHealth()+"/"+AllCharacter.getCharacters().get(1).getMAXHEALTH());
-		char2health.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+		char2health.setText("HP: "+AllCharacter.getCharacters().get(1).getHealth()+" MP: "+AllCharacter.getCharacters().get(1).getMana());
+		char2health.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char2Info.getChildren().addAll(char2Label, char2health);
 		
 		HBox char3Info = new HBox();
 		char3Info.setSpacing(30);
 		char3Info.setPadding(new Insets(0, 0, 0, 30));
 		Label char3Label = new Label("VINCENT");
-		char3Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+		char3Label.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char3health = new Label();
-		char3health.setText(""+AllCharacter.getCharacters().get(2).getHealth()+"/"+AllCharacter.getCharacters().get(2).getMAXHEALTH());
-		char3health.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+		char3health.setText("HP: "+AllCharacter.getCharacters().get(2).getHealth()+" MP: "+AllCharacter.getCharacters().get(2).getMana());
+		char3health.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char3Info.getChildren().addAll(char3Label, char3health);
 		
 		charInfo.getChildren().addAll(char1Info, char2Info, char3Info);
