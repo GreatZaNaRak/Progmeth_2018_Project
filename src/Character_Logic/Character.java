@@ -92,11 +92,11 @@ public class Character {
 		return damage;
 	}
 
-	public static int getMAXHEALTH() {
+	public int getMAXHEALTH() {
 		return MAXHEALTH;
 	}
 	
-	public static int getMAXMANA() {
+	public int getMAXMANA() {
 		return MAXMANA;
 	}
 

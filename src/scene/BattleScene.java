@@ -129,12 +129,12 @@ public class BattleScene extends BorderPane{
 			enermyInfo1.setSpacing(20);
 			enermyInfo1.setPadding(new Insets(0, 0, 0, 30));
 			
-			Label enermy1Label = new Label("Enemy A");
+			Label enermy1Label = new Label(AllCharacter.getCharacters().get(3).getName());
 			enermy1Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			
 			enemyHealth1 = new Label();
 			enemyHealth1.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
-			enemyHealth1.setText(""+AllCharacter.getCharacters().get(3).getHealth()+"/"+AllCharacter.getCharacters().get(3).getMana());
+			enemyHealth1.setText(""+AllCharacter.getCharacters().get(3).getHealth()+"/"+AllCharacter.getCharacters().get(3).getMAXHEALTH());
 			
 			enermyInfo1.getChildren().addAll(enermy1Label, enemyHealth1);
 			
@@ -151,12 +151,12 @@ public class BattleScene extends BorderPane{
 			enermyInfo2.setSpacing(20);
 			enermyInfo2.setPadding(new Insets(0, 0, 0, 30));
 			
-			Label enermy2Label = new Label("Enemy B");
+			Label enermy2Label = new Label(AllCharacter.getCharacters().get(4).getName());
 			enermy2Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			
 			enemyHealth2 = new Label();
 			enemyHealth2.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
-			enemyHealth2.setText(""+AllCharacter.getCharacters().get(4).getHealth()+"/"+AllCharacter.getCharacters().get(4).getMana());
+			enemyHealth2.setText(""+AllCharacter.getCharacters().get(4).getHealth()+"/"+AllCharacter.getCharacters().get(4).getMAXHEALTH());
 			
 			enermyInfo2.getChildren().addAll(enermy2Label, enemyHealth2);
 			
@@ -175,12 +175,12 @@ public class BattleScene extends BorderPane{
 			enermyInfo3.setSpacing(20);
 			enermyInfo3.setPadding(new Insets(0, 0, 0, 30));
 			
-			Label enermy3Label = new Label("Enemy C");
+			Label enermy3Label = new Label(AllCharacter.getCharacters().get(5).getName());
 			enermy3Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			
 			enemyHealth3 = new Label();
 			enemyHealth3.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
-			enemyHealth3.setText(""+AllCharacter.getCharacters().get(5).getHealth()+"/"+AllCharacter.getCharacters().get(5).getMana());
+			enemyHealth3.setText(""+AllCharacter.getCharacters().get(5).getHealth()+"/"+AllCharacter.getCharacters().get(5).getMAXHEALTH());
 			
 			enermyInfo3.getChildren().addAll(enermy3Label, enemyHealth3);
 			
@@ -199,12 +199,12 @@ public class BattleScene extends BorderPane{
 			enermyInfo4.setSpacing(20);
 			enermyInfo4.setPadding(new Insets(0, 0, 0, 30));
 			
-			Label enermy4Label = new Label("Enemy D");
+			Label enermy4Label = new Label(AllCharacter.getCharacters().get(6).getName());
 			enermy4Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			
 			enemyHealth4 = new Label();
 			enemyHealth4.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
-			enemyHealth4.setText(""+AllCharacter.getCharacters().get(6).getHealth()+"/"+AllCharacter.getCharacters().get(6).getMana());
+			enemyHealth4.setText(""+AllCharacter.getCharacters().get(6).getHealth()+"/"+AllCharacter.getCharacters().get(6).getMAXHEALTH());
 			
 			enermyInfo4.getChildren().addAll(enermy4Label, enemyHealth4);
 			
@@ -223,12 +223,12 @@ public class BattleScene extends BorderPane{
 			enermyInfo5.setSpacing(20);
 			enermyInfo5.setPadding(new Insets(0, 0, 0, 30));
 			
-			Label enermy5Label = new Label("Enemy E");
+			Label enermy5Label = new Label(AllCharacter.getCharacters().get(7).getName());
 			enermy5Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			
 			enemyHealth5 = new Label();
 			enemyHealth5.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
-			enemyHealth5.setText(""+AllCharacter.getCharacters().get(7).getHealth()+"/"+AllCharacter.getCharacters().get(7).getMana());
+			enemyHealth5.setText(""+AllCharacter.getCharacters().get(7).getHealth()+"/"+AllCharacter.getCharacters().get(7).getMAXHEALTH());
 			
 			enermyInfo5.getChildren().addAll(enermy5Label, enemyHealth5);
 			
@@ -255,7 +255,7 @@ public class BattleScene extends BorderPane{
 		Label char1Label = new Label("CLOUD");
 		char1Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 		char1health = new Label();
-		char1health.setText(""+AllCharacter.getCharacters().get(0).getHealth()+"/"+AllCharacter.getCharacters().get(0).getMana());
+		char1health.setText(""+AllCharacter.getCharacters().get(0).getHealth()+"/"+AllCharacter.getCharacters().get(0).getMAXHEALTH());
 		char1health.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 		char1Info.getChildren().addAll(char1Label, char1health);
 		
@@ -265,7 +265,7 @@ public class BattleScene extends BorderPane{
 		Label char2Label = new Label("TIFA");
 		char2Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 		char2health = new Label();
-		char2health.setText(""+AllCharacter.getCharacters().get(1).getHealth()+"/"+AllCharacter.getCharacters().get(1).getMana());
+		char2health.setText(""+AllCharacter.getCharacters().get(1).getHealth()+"/"+AllCharacter.getCharacters().get(1).getMAXHEALTH());
 		char2health.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 		char2Info.getChildren().addAll(char2Label, char2health);
 		
@@ -275,7 +275,7 @@ public class BattleScene extends BorderPane{
 		Label char3Label = new Label("VINCENT");
 		char3Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 		char3health = new Label();
-		char3health.setText(""+AllCharacter.getCharacters().get(2).getHealth()+"/"+AllCharacter.getCharacters().get(2).getMana());
+		char3health.setText(""+AllCharacter.getCharacters().get(2).getHealth()+"/"+AllCharacter.getCharacters().get(2).getMAXHEALTH());
 		char3health.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 		char3Info.getChildren().addAll(char3Label, char3health);
 		
