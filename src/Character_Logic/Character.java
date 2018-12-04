@@ -65,8 +65,9 @@ public class Character {
 	}
 
 	public void useSkill(int number, Character target) throws InsufficientManaException {
-		if (allSkill.get(number).getConsuming() >= this.mana) {
+		if (allSkill.get(number).getConsuming() <= this.mana) {
 			allSkill.get(number).skillTo(target);
+			this.mana-=allSkill.get(number).getConsuming();
 		} else {
 			int need = allSkill.get(number).getConsuming() - mana;
 			throw new InsufficientManaException(need);

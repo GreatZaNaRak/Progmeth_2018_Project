@@ -7,7 +7,7 @@ public class InsufficientManaException extends Exception {
 	      this.need = need;
 	   }
 
-	public double getAmount() {
+	public int getAmount() {
 		return need;
 	}
 }
