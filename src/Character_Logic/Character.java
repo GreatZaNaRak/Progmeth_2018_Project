@@ -11,7 +11,7 @@ public class Character {
 	private ArrayList<Skill> allSkill;
 	private boolean isAlive;
 	private int mana;
-	private static int MAXMANA;
+	private int MAXMANA;
 	
 	public Character(String name, int damage, int defend, int maxhealth, int mana) {
 		allSkill = new ArrayList<>();
@@ -97,7 +97,7 @@ public class Character {
 		return MAXHEALTH;
 	}
 	
-	public static int getMAXMANA() {
+	public int getMAXMANA() {
 		return MAXMANA;
 	}
 
