@@ -11,8 +11,7 @@ public class HealSkill extends Skill{
 	@Override
 	public void skillTo(Character target) {
 		// TODO Auto-generated method stub
-		if(target.isAlive()==true)
-			target.getHeal(heal);
+		target.getHeal(heal);
 	}
 	
 }

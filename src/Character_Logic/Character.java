@@ -78,11 +78,13 @@ public class Character {
 		return name;
 	}
 
-	public int getHeal(int heal) {
-		if (heal + this.health > MAXHEALTH)
-			return MAXHEALTH - heal;
-		else
-			return heal;
+	public void getHeal(int heal) {
+		if(this.isAlive == true) {		
+			if (heal + this.health > MAXHEALTH)
+				this.health = MAXHEALTH;
+			else
+				this.health+=heal;
+		}
 	}
 
 	public int getHealth() {

@@ -371,19 +371,19 @@ public class BattleScene extends BorderPane{
 				int target = new Random().nextInt(AllCharacter.getMyHero().size());
 				switch (GameScene.enermyID) {
 				case 3:
-					AllCharacter.getMyHero().get(target).takeDamage(AllCharacter.getCharacters().get(3).getDamage());
+					AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
 					break;
 				case 4:
-					AllCharacter.getMyHero().get(target).takeDamage(AllCharacter.getCharacters().get(4).getDamage());
+					AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
 					break;
 				case 5:
-					AllCharacter.getMyHero().get(target).takeDamage(AllCharacter.getCharacters().get(5).getDamage());
+					AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
 					break;
 				case 6:
-					AllCharacter.getMyHero().get(target).takeDamage(AllCharacter.getCharacters().get(6).getDamage());
+					AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
 					break;
 				case 7:
-					AllCharacter.getMyHero().get(target).takeDamage(AllCharacter.getCharacters().get(7).getDamage());
+					AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
 					break;
 				default:
 					break;
@@ -709,6 +709,7 @@ public class BattleScene extends BorderPane{
 				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
 				alert.showAndWait();
 			}
+			AllCharacter.getCharacters().get(0).getHeal(40);
 			AllCharacter.getCharacters().get(1).getHeal(40);
 			AllCharacter.getCharacters().get(2).getHeal(40);
 			updateEnemyInfo();
