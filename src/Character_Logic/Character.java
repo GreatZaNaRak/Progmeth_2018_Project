@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Character {
 	private String name;
 	private int health;
-	private static int MAXHEALTH;
+	private int MAXHEALTH;
 	private int damage;
 	private int defend;
 	private ArrayList<Skill> allSkill;
@@ -16,7 +16,7 @@ public class Character {
 	public Character(String name, int damage, int defend, int maxhealth, int mana) {
 		allSkill = new ArrayList<>();
 		this.name = name;
-		MAXHEALTH = maxhealth;
+		this.MAXHEALTH = maxhealth;
 		this.health = MAXHEALTH;
 		this.defend = defend;
 		this.damage = damage;
@@ -65,7 +65,7 @@ public class Character {
 	}
 
 	public void useSkill(int number, Character target) throws InsufficientManaException {
-		if (allSkill.get(number).getConsuming() >= mana) {
+		if (allSkill.get(number).getConsuming() >= this.mana) {
 			allSkill.get(number).skillTo(target);
 		} else {
 			int need = allSkill.get(number).getConsuming() - mana;
@@ -96,7 +96,7 @@ public class Character {
 		return MAXHEALTH;
 	}
 	
-	public int getMAXMANA() {
+	public static int getMAXMANA() {
 		return MAXMANA;
 	}
 

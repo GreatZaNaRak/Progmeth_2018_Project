@@ -6,6 +6,7 @@ import java.util.Random;
 
 import Character_Animate.Character_Ani;
 import Character_Logic.Character;
+import Character_Logic.InsufficientManaException;
 import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
 import javafx.animation.AnimationTimer;
@@ -94,9 +95,9 @@ public class BattleScene extends BorderPane{
 			return;
 		}
 		if (check) resetTurn();
-		char1health.setText(""+AllCharacter.getCharacters().get(0).getHealth()+"/"+AllCharacter.getCharacters().get(0).getMana());
-		char2health.setText(""+AllCharacter.getCharacters().get(1).getHealth()+"/"+AllCharacter.getCharacters().get(1).getMana());
-		char3health.setText(""+AllCharacter.getCharacters().get(2).getHealth()+"/"+AllCharacter.getCharacters().get(2).getMana());
+		char1health.setText(""+AllCharacter.getCharacters().get(0).getHealth()+"/"+AllCharacter.getCharacters().get(0).getMAXHEALTH());
+		char2health.setText(""+AllCharacter.getCharacters().get(1).getHealth()+"/"+AllCharacter.getCharacters().get(1).getMAXHEALTH());
+		char3health.setText(""+AllCharacter.getCharacters().get(2).getHealth()+"/"+AllCharacter.getCharacters().get(2).getMAXHEALTH());
 	}
 	
 	public static void drawCommandBox(int enermyID) {
@@ -584,23 +585,23 @@ public class BattleScene extends BorderPane{
 		switch (GameScene.enermyID) {
 		case 3:
 			enemyHealth1.setText(""+AllCharacter.getCharacters().get(GameScene.enermyID)
-					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMana());
+					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
 			break;
 		case 4:
 			enemyHealth2.setText(""+AllCharacter.getCharacters().get(GameScene.enermyID)
-					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMana());
+					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
 			break;
 		case 5:
 			enemyHealth3.setText(""+AllCharacter.getCharacters().get(GameScene.enermyID)
-					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMana());
+					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
 			break;
 		case 6:
 			enemyHealth4.setText(""+AllCharacter.getCharacters().get(GameScene.enermyID)
-					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMana());
+					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
 			break;
 		case 7:
 			enemyHealth5.setText(""+AllCharacter.getCharacters().get(GameScene.enermyID)
-					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMana());
+					.getHealth()+"/"+AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
 			break;
 		}
 	}
@@ -612,7 +613,7 @@ public class BattleScene extends BorderPane{
 		skill1.setDisable(false);
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(GameScene.enermyID).takeDamage(AllCharacter.getCharacters().get(t1-1).getDamage());
+			AllCharacter.getCharacters().get(0).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -621,17 +622,32 @@ public class BattleScene extends BorderPane{
 		});
 		
 		skill1.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(GameScene.enermyID).takeDamage(100);
+			try {
+				AllCharacter.getCharacters().get(0).useSkill(0, AllCharacter.getCharacters().get(GameScene.enermyID));
+			} catch (InsufficientManaException e1) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
+				alert.showAndWait();
+			}
 			updateEnemyInfo();
 			enemyDied();
-			AllCharacter.getMyHero().get(t1-1).setMana(AllCharacter.getMyHero().get(t1-1).getMana() - 50);
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
 			skill2.setDisable(true);
 		});
 		
 		skill2.setOnMouseClicked(e -> {
-			//do something
+			try {
+				AllCharacter.getCharacters().get(0).useSkill(1, AllCharacter.getCharacters().get(0));
+			} catch (InsufficientManaException e1) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
+				alert.showAndWait();
+			}
+			updateEnemyInfo();
+			enemyDied();
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
 			skill2.setDisable(true);
@@ -647,7 +663,7 @@ public class BattleScene extends BorderPane{
 		skill1.setDisable(false);
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(GameScene.enermyID).takeDamage(AllCharacter.getCharacters().get(t1-1).getDamage());
+			AllCharacter.getCharacters().get(1).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -656,9 +672,16 @@ public class BattleScene extends BorderPane{
 		});
 		
 		skill1.setOnMouseClicked(e -> {
-			for (int i = 0 ; i < AllCharacter.getMyHero().size() ; i++) {
-				AllCharacter.getMyHero().get(i).getHeal(40);
+			try {
+				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(0));
+			} catch (InsufficientManaException e1) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
+				alert.showAndWait();
 			}
+			AllCharacter.getCharacters().get(1).getHeal(40);
+			AllCharacter.getCharacters().get(2).getHeal(40);
 			updateEnemyInfo();
 			AllCharacter.getMyHero().get(t1-1).setMana(AllCharacter.getMyHero().get(t1-1).getMana() - 50);
 			normalAttack.setDisable(true);
@@ -667,7 +690,16 @@ public class BattleScene extends BorderPane{
 		});
 		
 		skill2.setOnMouseClicked(e -> {
-			//do something
+			try {
+				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(GameScene.enermyID));
+			} catch (InsufficientManaException e1) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
+				alert.showAndWait();
+			}
+			updateEnemyInfo();
+			enemyDied();
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
 			skill2.setDisable(true);
@@ -683,7 +715,7 @@ public class BattleScene extends BorderPane{
 		skill1.setDisable(false);
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(GameScene.enermyID).takeDamage(AllCharacter.getCharacters().get(t1-1).getDamage());
+			AllCharacter.getCharacters().get(2).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -692,17 +724,32 @@ public class BattleScene extends BorderPane{
 		});
 		
 		skill1.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(GameScene.enermyID).takeDamage(100);
+			try {
+				AllCharacter.getCharacters().get(2).useSkill(0, AllCharacter.getCharacters().get(GameScene.enermyID));
+			} catch (InsufficientManaException e1) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
+				alert.showAndWait();
+			}
 			updateEnemyInfo();
 			enemyDied();
-			AllCharacter.getMyHero().get(t1-1).setMana(AllCharacter.getMyHero().get(t1-1).getMana() - 50);
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
 			skill2.setDisable(true);
 		});
 		
 		skill2.setOnMouseClicked(e -> {
-			//do something
+			try {
+				AllCharacter.getCharacters().get(2).useSkill(1, AllCharacter.getCharacters().get(2));
+			} catch (InsufficientManaException e1) {
+				// TODO Auto-generated catch block
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText("You need more "+ e1.getAmount() + " mana.");
+				alert.showAndWait();
+			}
+			updateEnemyInfo();
+			enemyDied();
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
 			skill2.setDisable(true);
