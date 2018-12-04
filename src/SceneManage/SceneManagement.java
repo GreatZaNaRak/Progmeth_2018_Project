@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import scene.BattleScene;
 import scene.CreditScene;
 import scene.GameScene;
+import scene.HintSceen;
+import scene.HintSceen2;
 import scene.MenuScene;
 import scene.PlayScene;
 import scene.stage_1;
@@ -20,6 +22,8 @@ public class SceneManagement {
 	public static GameScene game = new GameScene();
 	public static stage_1 stage1 = new stage_1();
 	public static BattleScene battle = new BattleScene();
+	private static HintSceen hint = new HintSceen();
+	private static HintSceen2 hint2 = new HintSceen2();
 	
 	public static Scene menuScene = new Scene(menu);
 	public static Scene creditScene = new Scene(Credit);
@@ -27,6 +31,8 @@ public class SceneManagement {
 	public static Scene gameScene = new Scene(game);
 	public static Scene stage1Scene = new Scene(stage1);
 	public static Scene battleScene = new Scene(battle);
+	public static Scene hintScene = new Scene(hint);
+	public static Scene hintScene2 = new Scene(hint2);
 	
 	public SceneManagement(Stage stage) {
 		primaryStage = stage;

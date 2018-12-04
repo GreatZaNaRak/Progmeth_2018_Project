@@ -25,8 +25,8 @@ import sound.soundManagement;
 public class MenuScene extends BorderPane {
 	
 	private static VBox buttons;
-	private static Canvas playCanvas, creditCanvas, exitCanvas, enterCanvas;
-	private static GraphicsContext playGC, creditGC, exitGC, enterGC;
+	private static Canvas playCanvas, creditCanvas, hintCanvas, enterCanvas;
+	private static GraphicsContext playGC, creditGC, hintGC, enterGC;
 	private static int count = 1;
 	
 	public MenuScene() {
@@ -63,18 +63,18 @@ public class MenuScene extends BorderPane {
 		creditGC.fillText("CREDIT", 210, 50);
 		this.setCreditCanvasAction();
 		
-		exitCanvas = new Canvas(400, 100);
-		exitGC = exitCanvas.getGraphicsContext2D();
-		exitGC.setFill(Color.BLACK);
-		exitGC.setTextAlign(TextAlignment.CENTER);
-		exitGC.setFont(Font.font("Comic Sans MS", 50));
-		exitGC.fillText("EXIT", 200, 50);
+		hintCanvas = new Canvas(400, 100);
+		hintGC = hintCanvas.getGraphicsContext2D();
+		hintGC.setFill(Color.BLACK);
+		hintGC.setTextAlign(TextAlignment.CENTER);
+		hintGC.setFont(Font.font("Comic Sans MS", 50));
+		hintGC.fillText("HINT", 200, 50);
 		this.setExitCanvasAction();
 		
 		buttons.getChildren().add(gameTitle);
 		buttons.getChildren().add(playCanvas);
 		buttons.getChildren().add(creditCanvas);
-		buttons.getChildren().add(exitCanvas);
+		buttons.getChildren().add(hintCanvas);
 		
 		buttons.setVisible(false);
 		
@@ -179,40 +179,33 @@ public class MenuScene extends BorderPane {
 	}
 	
 	private void setExitCanvasAction() {
-		exitCanvas.setOnMouseEntered(e -> {
-			exitGC.setLineWidth(4);
-			exitGC.setStroke(Color.ORANGE);
-			exitGC.setFill(Color.WHITE);
-			exitGC.setFont(Font.font("Comic Sans MS", 50));
-			exitGC.setTextAlign(TextAlignment.CENTER);
-			exitGC.fillText("EXIT", 200, 50);
-			exitGC.moveTo(80, 20);
-			exitGC.lineTo(80, 50);
-			exitGC.lineTo(115, 35);
-			exitGC.closePath();
-			exitGC.stroke();
+		hintCanvas.setOnMouseEntered(e -> {
+			hintGC.setLineWidth(4);
+			hintGC.setStroke(Color.ORANGE);
+			hintGC.setFill(Color.WHITE);
+			hintGC.setFont(Font.font("Comic Sans MS", 50));
+			hintGC.setTextAlign(TextAlignment.CENTER);
+			hintGC.fillText("HINT", 200, 50);
+			hintGC.moveTo(80, 20);
+			hintGC.lineTo(80, 50);
+			hintGC.lineTo(115, 35);
+			hintGC.closePath();
+			hintGC.stroke();
 		});
 		
-		exitCanvas.setOnMouseExited(e -> {
-			exitGC.setFill(Color.WHITE);
-			exitGC.clearRect(0, 0, 400, 80);
-			exitGC.setFill(Color.BLACK);
-			exitGC.setFont(Font.font("Comic Sans MS", 50));
-			exitGC.setTextAlign(TextAlignment.CENTER);
-			exitGC.fillText("EXIT", 200, 50);
+		hintCanvas.setOnMouseExited(e -> {
+			hintGC.setFill(Color.WHITE);
+			hintGC.clearRect(0, 0, 400, 80);
+			hintGC.setFill(Color.BLACK);
+			hintGC.setFont(Font.font("Comic Sans MS", 50));
+			hintGC.setTextAlign(TextAlignment.CENTER);
+			hintGC.fillText("HINT", 200, 50);
 		});
 		
-		exitCanvas.setOnMouseClicked(e -> {
-			soundManagement.gun();
-			ButtonType foo = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-			ButtonType bar = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-			Alert alert = new Alert(AlertType.CONFIRMATION,
-			        "Are you sure you want to exit the game?", foo, bar);
-			alert.setTitle("Exit");
-			Optional<ButtonType> result = alert.showAndWait();
-			if (result.orElse(bar) == foo) {
-				Platform.exit();
-			}
+		hintCanvas.setOnMouseClicked(e -> {
+			soundManagement.confirmed();
+			soundManagement.stopMusic();
+			SceneManagement.switchScene(SceneManagement.hintScene);
 		});
 	}
 	
