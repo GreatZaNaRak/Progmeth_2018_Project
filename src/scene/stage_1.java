@@ -170,19 +170,7 @@ public class stage_1 extends StackPane {
 				hitPrevLevel();
 				hitEnermy();
 				
-			} else if (e.getCode() == KeyCode.ESCAPE) {
-				ButtonType foo = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-				ButtonType bar = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-				Alert alert = new Alert(AlertType.CONFIRMATION,
-				        "Are you sure you want to return to main menu ?", foo, bar);
-				alert.setTitle("Exit");
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.orElse(bar) == foo) {
-					gc.clearRect(0, 0, 2000, 900);
-					SceneManagement.switchScene(SceneManagement.playScene);
-					soundManagement.stopGameSound();
-				}
-			} else if (e.getCode() == KeyCode.SPACE && isHit) {
+			}  else if (e.getCode() == KeyCode.SPACE && isHit) {
 				soundManagement.enterSound();
 				soundManagement.stopGameSound();
 				soundManagement.gameSound1();

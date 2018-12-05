@@ -27,14 +27,16 @@ public class BattleScene extends BorderPane {
 	private static Button back, action, EndTurn, normalAttack, skill1, skill2;
 	public static Label char1health, char2health, char3health, enemyHealth1, enemyHealth2;
 	public static Label enemyHealth3, enemyHealth4, enemyHealth5;
+	
 	private static HBox box;
 	private static AnimationTimer walk;
 	private static VBox skill;
 	public static int turn = 1, skillCount = 1, t1, escapeChance = 1;
 	public static AllCharacter allchar = new AllCharacter();
+	private static boolean checkHealing;
 
 	public BattleScene() {
-
+		
 		// >>>>>>>>>>> stage <<<<<<<<<<<<<<<
 
 		Canvas bgCavnas = new Canvas(900, 700);
@@ -42,11 +44,13 @@ public class BattleScene extends BorderPane {
 
 		Canvas enermyCanvas = new Canvas(900, 700);
 		enermyGC = enermyCanvas.getGraphicsContext2D();
-
+		
 		StackPane bg = new StackPane();
 		bg.getChildren().add(bgCavnas);
 		bg.getChildren().add(enermyCanvas);
 		this.setCenter(bg);
+		
+		checkHealing = false;
 
 		// >>>>>>>>>>> stage <<<<<<<<<<<<<<<
 
@@ -368,10 +372,17 @@ public class BattleScene extends BorderPane {
 
 		EndTurn.setOnMouseClicked(e -> {
 			walk.stop();
+			if (turn % 2 == 0) {
+				if(checkHealing == true) {
+					RenderableHolder.healing.play();
+					checkHealing = false;
+				}
+			}
 			if (turn % 4 == 0) {
 				action.setDisable(true);
 				int target = new Random().nextInt(AllCharacter.getMyHero().size());
 				AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
+				RenderableHolder.tackle.play();
 			}
 			turn++; escapeChance++;
 			update();
@@ -388,8 +399,14 @@ public class BattleScene extends BorderPane {
 				alert.setContentText("YOU WIN !!!");
 				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
+				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
+				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
+				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(1).getMAXMANA());
+				AllCharacter.getCharacters().get(1).setDamage(AllCharacter.getCharacters().get(1).getDefault_damage());
+				AllCharacter.getCharacters().get(1).setDefend(AllCharacter.getCharacters().get(1).getDefault_defense());
+				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
+				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
+				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
 				enermyGC.clearRect(0, 0, 2000, 900);
 				GameScene.enemy1GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.gameScene);
@@ -406,8 +423,14 @@ public class BattleScene extends BorderPane {
 				alert.setContentText("YOU WIN !!!");
 				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
+				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
+				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
+				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(1).getMAXMANA());
+				AllCharacter.getCharacters().get(1).setDamage(AllCharacter.getCharacters().get(1).getDefault_damage());
+				AllCharacter.getCharacters().get(1).setDefend(AllCharacter.getCharacters().get(1).getDefault_defense());
+				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
+				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
+				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
 				enermyGC.clearRect(0, 0, 2000, 900);
 				GameScene.enemy2GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.gameScene);
@@ -424,8 +447,14 @@ public class BattleScene extends BorderPane {
 				alert.setContentText("YOU WIN !!!");
 				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
+				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
+				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
+				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(1).getMAXMANA());
+				AllCharacter.getCharacters().get(1).setDamage(AllCharacter.getCharacters().get(1).getDefault_damage());
+				AllCharacter.getCharacters().get(1).setDefend(AllCharacter.getCharacters().get(1).getDefault_defense());
+				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
+				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
+				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
 				enermyGC.clearRect(0, 0, 2000, 900);
 				stage_1.enemy1GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
@@ -442,8 +471,14 @@ public class BattleScene extends BorderPane {
 				alert.setContentText("YOU WIN !!!");
 				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
+				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
+				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
+				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(1).getMAXMANA());
+				AllCharacter.getCharacters().get(1).setDamage(AllCharacter.getCharacters().get(1).getDefault_damage());
+				AllCharacter.getCharacters().get(1).setDefend(AllCharacter.getCharacters().get(1).getDefault_defense());
+				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
+				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
+				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
 				enermyGC.clearRect(0, 0, 2000, 900);
 				stage_1.enemy2GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
@@ -460,8 +495,14 @@ public class BattleScene extends BorderPane {
 				alert.setContentText("YOU WIN !!!");
 				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
-				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
+				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
+				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
+				AllCharacter.getCharacters().get(1).setMana(AllCharacter.getCharacters().get(1).getMAXMANA());
+				AllCharacter.getCharacters().get(1).setDamage(AllCharacter.getCharacters().get(1).getDefault_damage());
+				AllCharacter.getCharacters().get(1).setDefend(AllCharacter.getCharacters().get(1).getDefault_defense());
+				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
+				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
+				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
 				enermyGC.clearRect(0, 0, 2000, 900);
 				stage_1.bossGC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
@@ -667,6 +708,7 @@ public class BattleScene extends BorderPane {
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
 			AllCharacter.getCharacters().get(0).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
+			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -677,6 +719,7 @@ public class BattleScene extends BorderPane {
 		skill1.setOnMouseClicked(e -> {
 			try {
 				AllCharacter.getCharacters().get(0).useSkill(0, AllCharacter.getCharacters().get(GameScene.enermyID));
+				RenderableHolder.attacking.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -693,6 +736,7 @@ public class BattleScene extends BorderPane {
 		skill2.setOnMouseClicked(e -> {
 			try {
 				AllCharacter.getCharacters().get(0).useSkill(1, AllCharacter.getCharacters().get(0));
+				RenderableHolder.buffing.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -722,6 +766,7 @@ public class BattleScene extends BorderPane {
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
 			AllCharacter.getCharacters().get(1).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
+			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -732,15 +777,16 @@ public class BattleScene extends BorderPane {
 		skill1.setOnMouseClicked(e -> {
 			try {
 				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(0));
+				AllCharacter.getCharacters().get(0).getHeal(40);
+				AllCharacter.getCharacters().get(1).getHeal(40);
+				AllCharacter.getCharacters().get(2).getHeal(40);
+				checkHealing = true;
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setContentText("You need more " + e1.getAmount() + " mana.");
 				alert.showAndWait();
 			}
-			AllCharacter.getCharacters().get(0).getHeal(40);
-			AllCharacter.getCharacters().get(1).getHeal(40);
-			AllCharacter.getCharacters().get(2).getHeal(40);
 			updateEnemyInfo();
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
@@ -750,6 +796,7 @@ public class BattleScene extends BorderPane {
 		skill2.setOnMouseClicked(e -> {
 			try {
 				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(GameScene.enermyID));
+				RenderableHolder.debuffing.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -779,6 +826,7 @@ public class BattleScene extends BorderPane {
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
 			AllCharacter.getCharacters().get(2).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
+			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -789,6 +837,7 @@ public class BattleScene extends BorderPane {
 		skill1.setOnMouseClicked(e -> {
 			try {
 				AllCharacter.getCharacters().get(2).useSkill(0, AllCharacter.getCharacters().get(GameScene.enermyID));
+				RenderableHolder.tackle.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -805,6 +854,7 @@ public class BattleScene extends BorderPane {
 		skill2.setOnMouseClicked(e -> {
 			try {
 				AllCharacter.getCharacters().get(2).useSkill(1, AllCharacter.getCharacters().get(2));
+				RenderableHolder.buffing.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
 				Alert alert = new Alert(AlertType.INFORMATION);

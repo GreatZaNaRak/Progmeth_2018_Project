@@ -6,9 +6,11 @@ import Character_Animate.Character_Ani;
 import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
 import SharedObject.RenderableHolder;
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -190,22 +192,6 @@ public class GameScene extends StackPane {
 				gc.drawImage(char4, x, y, 100, 100);
 				hitNextLevel();
 				hitEnermy();
-				
-			} else if (e.getCode() == KeyCode.ESCAPE) {
-				ButtonType foo = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-				ButtonType bar = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-				Alert alert = new Alert(AlertType.CONFIRMATION,
-				        "Are you sure you want to return to main menu ?", foo, bar);
-				alert.setTitle("Exit");
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.orElse(bar) == foo) {
-					gc.clearRect(0, 0, 2000, 900);
-					bgGc.clearRect(0, 0, 2000, 900);
-					enermyGC.fillOval(next, 450, 80, 80);
-					bgGc.drawImage(RenderableHolder.background1, bgX, bgY, 2000, 900);
-					SceneManagement.switchScene(SceneManagement.playScene);
-					soundManagement.stopGameSound();
-				}
 				
 			} else if (e.getCode() == KeyCode.SPACE && isHit) {
 				System.out.println("GotCha!!");

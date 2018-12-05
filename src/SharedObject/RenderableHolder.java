@@ -1,6 +1,7 @@
 package SharedObject;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 public class RenderableHolder {
 	
@@ -13,7 +14,8 @@ public class RenderableHolder {
 	public static Image char1Image, char2Image, char3Image;
 	public static Image char1Dead, char2Dead, char3Dead;
 	public static Image wasd, enemyFound, back, arrowNext, arrowPrev, nextLevel, fightPic;
-
+	public static AudioClip attacking,buffing,debuffing,tackle,healing;
+	
 	static {
 		loadResource();
 	}
@@ -63,6 +65,12 @@ public class RenderableHolder {
 		arrowPrev = new Image(ClassLoader.getSystemResource("arrow_back.png").toString());
 		nextLevel = new Image(ClassLoader.getSystemResource("nextLevel.jpg").toString());
 		fightPic = new Image(ClassLoader.getSystemResource("fightPic.jpg").toString());
+		
+		attacking = new AudioClip(ClassLoader.getSystemResource("Attacksound.mp3").toString());
+		buffing = new AudioClip(ClassLoader.getSystemResource("Buff_sound.mp3").toString());
+		debuffing = new AudioClip(ClassLoader.getSystemResource("Debuff.mp3").toString());
+		tackle = new AudioClip(ClassLoader.getSystemResource("Enemyattacksound.mp3").toString());
+		healing = new AudioClip(ClassLoader.getSystemResource("HEAL SOUND!.mp3").toString());
 	}
 	
 	

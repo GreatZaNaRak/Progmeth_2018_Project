@@ -1,5 +1,6 @@
 package Character_Animate;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -11,11 +12,12 @@ public class Vincent extends VBox{
 	public Vincent() {
 		// TODO Auto-generated constructor stub
 		this.setAlignment(Pos.CENTER_LEFT);
+		this.setPadding(new Insets(15, 15, 15, 15));
 		this.setStyle("-fx-font-size : 30");
 		name = new Label("Name : Vincent");
-		talent = new Label("Talent : He is good in Magical damage");
-		weak = new Label("Weak ness : He is lack in Physical\ndamage");
-		ultimate = new Label("Ultimate skill : Five Star Forms");
+		talent = new Label("Talent : He is brave and powerful");
+		weak = new Label("Skill1 \"Tackle\" :\nhit enemy with powerful slash\n\tDamage = 50");
+		ultimate = new Label("Skill2 \"Resist\" :\n\tincrease defend power\n\tDefend increase by 35");
 		
 	}
 	

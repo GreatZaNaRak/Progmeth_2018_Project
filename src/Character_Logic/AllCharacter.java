@@ -2,6 +2,8 @@ package Character_Logic;
 
 import java.util.ArrayList;
 
+import scene.PlayScene;
+
 public class AllCharacter {
 
 	private static ArrayList<Character> Characters = new ArrayList<>();

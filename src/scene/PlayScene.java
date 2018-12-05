@@ -4,6 +4,7 @@ import Character_Animate.Cloud;
 import Character_Animate.Tifa;
 import Character_Animate.Vincent;
 import Character_Animate.ready;
+import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
 import SharedObject.RenderableHolder;
 import javafx.geometry.Pos;
@@ -177,12 +178,34 @@ public class PlayScene extends BorderPane{
 				thirdChar.setVisible(true);
 				start.setVisible(false);
 				ready.clear();
+				
 			}
 		});
 	}
 	
 	private void setStartAction() {
 		start.setOnMouseClicked(e -> {
+			switch (PlayScene.CharToPlay) {
+			case 1 : 
+				AllCharacter.getMyHero().get(0).setDamage(AllCharacter.getMyHero().get(0).getDamage() + 5);
+				AllCharacter.getMyHero().get(1).setDamage(AllCharacter.getMyHero().get(1).getDamage() + 5);
+				AllCharacter.getMyHero().get(2).setDamage(AllCharacter.getMyHero().get(2).getDamage() + 5);
+				break;
+			case 2 : 
+				AllCharacter.getMyHero().get(0).setHealth(AllCharacter.getMyHero().get(0).getHealth() + 50);
+				AllCharacter.getMyHero().get(1).setHealth(AllCharacter.getMyHero().get(1).getHealth() + 50);
+				AllCharacter.getMyHero().get(2).setHealth(AllCharacter.getMyHero().get(2).getHealth() + 50);
+				break;
+			case 3 : 
+				AllCharacter.getMyHero().get(0).setDefend(AllCharacter.getMyHero().get(0).getDefend() + 5);
+				AllCharacter.getMyHero().get(0).setDefend(AllCharacter.getMyHero().get(0).getDefend() + 5);
+				AllCharacter.getMyHero().get(0).setDefend(AllCharacter.getMyHero().get(0).getDefend() + 5);
+				break;
+			default : 
+				System.out.println(".."); 
+				break;
+			}
+			
 			GameScene.drawChar(CharToPlay);
 			switch (CharToPlay) {
 			case 1: GameScene.setGameAction(RenderableHolder.char1, 
