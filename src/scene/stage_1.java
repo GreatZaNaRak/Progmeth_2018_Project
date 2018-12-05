@@ -1,10 +1,9 @@
 package scene;
 
 import java.util.Optional;
-
-import Character_Animate.Character_Ani;
 import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
+import SharedObject.RenderableHolder;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,7 +24,6 @@ public class stage_1 extends StackPane {
 	private static Canvas canvas;
 	private static AnimationTimer animate;
 	public static GraphicsContext gc, bgGc, enermyGC, enemy1GC, enemy2GC, bossGC;
-	private static Image img, enemy3Img, enemy4Img, bossImg, exclamation, battle;
 	private static final int SPEED = 10; // should be 5
 	private static boolean isHit, isEnemyFound = false;
 	private static int x = 50, y = 450, distanceX = 50, distanceY = 450, previous = -450;
@@ -37,11 +35,7 @@ public class stage_1 extends StackPane {
 		Canvas bgCavnas = new Canvas(2000, 900);
 		bgGc = bgCavnas.getGraphicsContext2D();
 		
-		img = new Image(ClassLoader.getSystemResource("evil-castle.jpg").toString());
-		exclamation = new Image(ClassLoader.getSystemResource("exclamation.gif").toString());
-		battle = new Image(ClassLoader.getSystemResource("vs.gif").toString());
-		
-		bgGc.drawImage(img, 0, 0, 2000, 900);
+		bgGc.drawImage(RenderableHolder.background2, 0, 0, 2000, 900);
 		
 		canvas = new Canvas(900, 900);
 		gc = canvas.getGraphicsContext2D();
@@ -52,18 +46,15 @@ public class stage_1 extends StackPane {
 		
 		Canvas enemy1Canvas = new Canvas(900, 900);
 		enemy1GC = enemy1Canvas.getGraphicsContext2D();
-		enemy3Img = new Image(ClassLoader.getSystemResource("skeleton.png").toString());
-		enemy1GC.drawImage(enemy3Img, enemy3X, 450, 100, 100);
+		enemy1GC.drawImage(RenderableHolder.enemy3, enemy3X, 450, 100, 100);
 		
 		Canvas enemy2Canvas = new Canvas(900, 900);
 		enemy2GC = enemy2Canvas.getGraphicsContext2D();
-		enemy4Img = new Image(ClassLoader.getSystemResource("Warlock.png").toString());
-		enemy2GC.drawImage(enemy4Img, enemy4X, 650, 100, 100);
+		enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
 		
 		Canvas bossCanvas = new Canvas(900, 900);
 		bossGC = bossCanvas.getGraphicsContext2D();
-		bossImg = new Image(ClassLoader.getSystemResource("boss.png").toString());
-		bossGC.drawImage(bossImg, bossX, 220, 150, 150);
+		bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
 		
 		this.getChildren().add(bgCavnas);
 		this.getChildren().add(enermyCanvas);
@@ -74,9 +65,9 @@ public class stage_1 extends StackPane {
 	
 	public static void drawChar(int charToPlay) {
 		switch (charToPlay) {
-		case 1 : gc.drawImage(Character_Ani.getChar1(), x, y, 100, 100); break;
-		case 2 : gc.drawImage(Character_Ani.getCharII1(), x, y, 100, 100); break;
-		case 3 : gc.drawImage(Character_Ani.getCharIII1(), x, y, 100, 100); break;
+		case 1 : gc.drawImage(RenderableHolder.char1, x, y, 100, 100); break;
+		case 2 : gc.drawImage(RenderableHolder.charII1, x, y, 100, 100); break;
+		case 3 : gc.drawImage(RenderableHolder.charIII1, x, y, 100, 100); break;
 		}
 	}
 	
@@ -99,14 +90,17 @@ public class stage_1 extends StackPane {
 					enemy4X -= SPEED;
 					bossX -= SPEED;
 					previous -= SPEED;
-					bgGc.drawImage(img, bgX, bgY, 2000, 900);
+					bgGc.drawImage(RenderableHolder.background2, bgX, bgY, 2000, 900);
 					enermyGC.clearRect(0, 0, 2000, 900);
 					enemy2GC.clearRect(0, 0, 2000, 900);
 					enemy1GC.clearRect(0, 0, 2000, 900);
 					bossGC.clearRect(0, 0, 2000, 900);
-					if (AllCharacter.getCharacters().get(5).isAlive()) enemy1GC.drawImage(enemy3Img, enemy3X, 450, 100, 100);
-					if (AllCharacter.getCharacters().get(6).isAlive()) enemy2GC.drawImage(enemy4Img, enemy4X, 650, 100, 100);
-					if (AllCharacter.getCharacters().get(7).isAlive()) bossGC.drawImage(bossImg, bossX, 220, 150, 150);
+					if (AllCharacter.getCharacters().get(5).isAlive()) 
+						enemy1GC.drawImage(RenderableHolder.enemy3, enemy3X, 450, 100, 100);
+					if (AllCharacter.getCharacters().get(6).isAlive()) 
+						enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
+					if (AllCharacter.getCharacters().get(7).isAlive()) 
+						bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
 					enermyGC.fillOval(previous, 450, 80, 80);
 				}
 				gc.clearRect(0, 0, 900, 900);
@@ -144,14 +138,17 @@ public class stage_1 extends StackPane {
 					bossX += SPEED;
 					bgX += SPEED;
 					previous += SPEED;
-					bgGc.drawImage(img, bgX, bgY, 2000, 900);
+					bgGc.drawImage(RenderableHolder.background2, bgX, bgY, 2000, 900);
 					enermyGC.clearRect(0, 0, 2000, 900);
 					enemy2GC.clearRect(0, 0, 2000, 900);
 					enemy1GC.clearRect(0, 0, 2000, 900);
 					bossGC.clearRect(0, 0, 2000, 900);
-					if (AllCharacter.getCharacters().get(5).isAlive()) enemy1GC.drawImage(enemy3Img, enemy3X, 450, 100, 100);
-					if (AllCharacter.getCharacters().get(6).isAlive()) enemy2GC.drawImage(enemy4Img, enemy4X, 650, 100, 100);
-					if (AllCharacter.getCharacters().get(7).isAlive()) bossGC.drawImage(bossImg, bossX, 220, 150, 150);
+					if (AllCharacter.getCharacters().get(5).isAlive()) 
+						enemy1GC.drawImage(RenderableHolder.enemy3, enemy3X, 450, 100, 100);
+					if (AllCharacter.getCharacters().get(6).isAlive()) 
+						enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
+					if (AllCharacter.getCharacters().get(7).isAlive()) 
+						bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
 					enermyGC.fillOval(previous, 450, 80, 80);
 				}
 				gc.clearRect(0, 0, 900, 900);
@@ -201,7 +198,7 @@ public class stage_1 extends StackPane {
 					
 					@Override
 					public void handle(long now) {
-						enermyGC.drawImage(battle, 0, 0, 900, 900);
+						enermyGC.drawImage(RenderableHolder.battle, 0, 0, 900, 900);
 					}
 				};rr.start();
 		
@@ -215,9 +212,12 @@ public class stage_1 extends StackPane {
 					    new KeyFrame(Duration.seconds(2.2), e1 -> { 
 					    	enermyGC.clearRect(0, 0, 2000, 900);
 					    	GameScene.cnt = 0;
-					    	if (AllCharacter.getCharacters().get(5).isAlive()) enemy1GC.drawImage(enemy3Img, enemy3X, 450, 100, 100);
-							if (AllCharacter.getCharacters().get(6).isAlive()) enemy2GC.drawImage(enemy4Img, enemy4X, 650, 100, 100);
-							if (AllCharacter.getCharacters().get(7).isAlive()) bossGC.drawImage(bossImg, bossX, 220, 150, 150);
+					    	if (AllCharacter.getCharacters().get(5).isAlive()) 
+					    		enemy1GC.drawImage(RenderableHolder.enemy3, enemy3X, 450, 100, 100);
+							if (AllCharacter.getCharacters().get(6).isAlive()) 
+								enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
+							if (AllCharacter.getCharacters().get(7).isAlive()) 
+								bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
 					    	enermyGC.fillOval(previous, 450, 80, 80);
 					    	SceneManagement.switchScene(SceneManagement.battleScene);
 					    	if (GameScene.enermyID == 7) {
@@ -242,7 +242,7 @@ public class stage_1 extends StackPane {
 				// TODO Auto-generated method stub
 				if (850 < distanceX && distanceX < 950  &&  400 < distanceY && distanceY < 500) {
 					if (AllCharacter.getCharacters().get(5).isAlive()) {
-						gc.drawImage(exclamation, x + 22, y - 60, 62, 62);
+						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnemyFound = true;
 						GameScene.enermyID = 5;
 					} else {
@@ -250,7 +250,7 @@ public class stage_1 extends StackPane {
 					}
 				} else if (200 < distanceX && distanceX < 280 && 600 < distanceY && distanceY < 680) {
 					if (AllCharacter.getCharacters().get(6).isAlive()) {
-						gc.drawImage(exclamation, x + 22, y - 60, 62, 62);
+						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnemyFound = true;
 						GameScene.enermyID = 6;
 					} else {
@@ -258,7 +258,7 @@ public class stage_1 extends StackPane {
 					}
 				} else if (310 < distanceX && distanceX < 450 && 200 < distanceY && distanceY < 340) {
 					if (AllCharacter.getCharacters().get(7).isAlive()) {
-						gc.drawImage(exclamation, x + 22, y - 60, 62, 62);
+						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnemyFound = true;
 						GameScene.enermyID = 7;
 					} else {

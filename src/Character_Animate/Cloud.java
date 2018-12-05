@@ -1,5 +1,6 @@
 package Character_Animate;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ public class Cloud extends VBox{
 	public Cloud() {
 		// TODO Auto-generated constructor stub
 		this.setAlignment(Pos.CENTER_LEFT);
+		this.setPadding(new Insets(15, 15, 15, 15));
 		this.setStyle("-fx-font-size : 30");
 		name = new Label("Name : Cloud");
 		talent = new Label("Talent : He is good in Physical damage");

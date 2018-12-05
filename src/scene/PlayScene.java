@@ -1,17 +1,16 @@
 package scene;
 
-import Character_Animate.Character_Ani;
 import Character_Animate.Cloud;
 import Character_Animate.Tifa;
 import Character_Animate.Vincent;
 import Character_Animate.ready;
 import SceneManage.SceneManagement;
+import SharedObject.RenderableHolder;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -111,8 +110,7 @@ public class PlayScene extends BorderPane{
 		label1.setFont(Font.font(30));
 		
 		firstChar.getChildren().addAll(firstCanvas, label1);
-		Image img1 = new Image(ClassLoader.getSystemResource("Great.jpg").toString());
-		firstGC.drawImage(img1, 0, 0, 180, 180);
+		firstGC.drawImage(RenderableHolder.char1Image, 0, 0, 180, 180);
 		this.setFirstCharAction();
 		
 		secondChar = new HBox();
@@ -125,8 +123,7 @@ public class PlayScene extends BorderPane{
 		label2.setFont(Font.font(30));
 		
 		secondChar.getChildren().addAll(secondCanvas, label2);
-		Image img2 = new Image(ClassLoader.getSystemResource("Jiji.jpg").toString());
-		secondGC.drawImage(img2, 0, 0, 180, 180);
+		secondGC.drawImage(RenderableHolder.char2Image, 0, 0, 180, 180);
 		this.setSecondCharAction();
 		
 		thirdChar = new HBox();
@@ -139,8 +136,7 @@ public class PlayScene extends BorderPane{
 		label3.setFont(Font.font(30));
 		
 		thirdChar.getChildren().addAll(thirdCanvas, label3);
-		Image img3 = new Image(ClassLoader.getSystemResource("SoSo.jpg").toString());
-		thirdGC.drawImage(img3, 0, 0, 180, 180);
+		thirdGC.drawImage(RenderableHolder.char3Image, 0, 0, 180, 180);
 		this.setThirdCharAction();
 		
 		
@@ -189,20 +185,20 @@ public class PlayScene extends BorderPane{
 		start.setOnMouseClicked(e -> {
 			GameScene.drawChar(CharToPlay);
 			switch (CharToPlay) {
-			case 1: GameScene.setGameAction(Character_Ani.getChar1(), 
-					Character_Ani.getChar2(), 
-					Character_Ani.getChar3(), 
-					Character_Ani.getChar4()); break;
+			case 1: GameScene.setGameAction(RenderableHolder.char1, 
+					RenderableHolder.char2, 
+					RenderableHolder.char3, 
+					RenderableHolder.char4); break;
 					
-			case 2: GameScene.setGameAction(Character_Ani.getCharII1(), 
-					Character_Ani.getCharII2(), 
-					Character_Ani.getCharII3(), 
-					Character_Ani.getCharII4()); break;
+			case 2: GameScene.setGameAction(RenderableHolder.charII1, 
+					RenderableHolder.charII2, 
+					RenderableHolder.charII3, 
+					RenderableHolder.charII4); break;
 			
-			case 3: GameScene.setGameAction(Character_Ani.getCharIII1(), 
-					Character_Ani.getCharIII2(), 
-					Character_Ani.getCharIII3(), 
-					Character_Ani.getCharIII4()); break;
+			case 3: GameScene.setGameAction(RenderableHolder.charIII1, 
+					RenderableHolder.charIII2, 
+					RenderableHolder.charIII3, 
+					RenderableHolder.charIII4); break;
 			}
 			SceneManagement.switchScene(SceneManagement.gameScene);
 			soundManagement.gameSound1();

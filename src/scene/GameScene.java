@@ -5,6 +5,7 @@ import java.util.Optional;
 import Character_Animate.Character_Ani;
 import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
+import SharedObject.RenderableHolder;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,32 +24,22 @@ import sound.soundManagement;
 public class GameScene extends StackPane {
 	
 	private static Canvas canvas;
-	public static int cnt = 0;
 	public static AnimationTimer animate, enermyMove;
 	public static GraphicsContext gc, enermyGC, bgGc, enemy1GC, enemy2GC;
-	public static int enermyID = 0;
-	private static Image img, enermy1Img, enermy2Img, exclamation, battle;
+	public static int enermyID = 0, bgX = 0, bgY = 0, cnt = 0;
 	private static final int SPEED = 10;
 	private static boolean isHit, isEnermyFound = false;
 	private static int x = 50, y = 450, distanceX = 50, distanceY = 450, next = 1250, enermyX = 750;
-	public static int bgX = 0, bgY = 0;
 
 	public GameScene() {
 
 		Canvas bgCavnas = new Canvas(2000, 900);
 		bgGc = bgCavnas.getGraphicsContext2D();
 		
-		img = new Image(getClass().getClassLoader().getResource("bg.png").toString());
-		
-		bgGc.drawImage(img, 0, 0, 2000, 900);
-		
+		bgGc.drawImage(RenderableHolder.background1, 0, 0, 2000, 900);
 		
 		canvas = new Canvas(900, 900);
 		gc = canvas.getGraphicsContext2D();
-		
-		
-		exclamation = new Image(ClassLoader.getSystemResource("exclamation.gif").toString());
-		battle = new Image(ClassLoader.getSystemResource("vs.gif").toString());
 		
 		Canvas enermyCanvas = new Canvas(900, 900);
 		enermyGC = enermyCanvas.getGraphicsContext2D();
@@ -56,14 +47,11 @@ public class GameScene extends StackPane {
 		
 		Canvas enemy1Canvas = new Canvas(900, 900);
 		enemy1GC = enemy1Canvas.getGraphicsContext2D();
-		enermy1Img = new Image(ClassLoader.getSystemResource("ogre.png").toString());
-		
-		enemy1GC.drawImage(enermy1Img, enermyX, 200, 100, 100);
+		enemy1GC.drawImage(RenderableHolder.enemy1, enermyX, 200, 100, 100);
 		
 		Canvas enemy2Canvas = new Canvas(900, 900);
 		enemy2GC = enemy2Canvas.getGraphicsContext2D();
-		enermy2Img = new Image(ClassLoader.getSystemResource("pyro_idle.gif").toString());
-		enemy2GC.drawImage(enermy2Img, enermyX - 450 , 600, 100, 100);
+		enemy2GC.drawImage(RenderableHolder.enemy2, enermyX - 450 , 600, 100, 100);
 		
 		this.getChildren().add(bgCavnas);
 		this.getChildren().add(enermyCanvas);
@@ -75,9 +63,9 @@ public class GameScene extends StackPane {
 	
 	public static void drawChar(int charToPlay) {
 		switch (charToPlay) {
-		case 1 : gc.drawImage(Character_Ani.getChar1(), x, y, 100, 100); break;
-		case 2 : gc.drawImage(Character_Ani.getCharII1(), x, y, 100, 100); break;
-		case 3 : gc.drawImage(Character_Ani.getCharIII1(), x, y, 100, 100); break;
+		case 1 : gc.drawImage(RenderableHolder.char1, x, y, 100, 100); break;
+		case 2 : gc.drawImage(RenderableHolder.charII1, x, y, 100, 100); break;
+		case 3 : gc.drawImage(RenderableHolder.charIII1, x, y, 100, 100); break;
 		}
 	}
 	
@@ -89,7 +77,7 @@ public class GameScene extends StackPane {
 				// TODO Auto-generated method stub
 				if (690 < distanceX && distanceX < 800  &&  150 < distanceY && distanceY < 240) {
 					if (AllCharacter.getCharacters().get(3).isAlive()) {
-						gc.drawImage(exclamation, x + 22, y - 60, 62, 62);
+						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnermyFound = true;
 						enermyID = 3;
 					} else {
@@ -97,7 +85,7 @@ public class GameScene extends StackPane {
 					}
 				} else if (690 - 450 < distanceX && distanceX < 800 - 450 && 550 < distanceY && distanceY < 640) {
 					if (AllCharacter.getCharacters().get(4).isAlive()) {
-						gc.drawImage(exclamation, x + 22, y - 60, 62, 62);
+						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnermyFound = true;
 						enermyID = 4;
 					} else {
@@ -131,13 +119,15 @@ public class GameScene extends StackPane {
 					bgX -= SPEED;
 					next -= SPEED;
 					enermyX -= SPEED;
-					bgGc.drawImage(img, bgX, bgY, 2000, 900);
+					bgGc.drawImage(RenderableHolder.background1, bgX, bgY, 2000, 900);
 					enermyGC.clearRect(0, 0, 2000, 900);
 					enemy1GC.clearRect(0, 0, 2000, 900);
 					enemy2GC.clearRect(0, 0, 2000, 900);
 					enermyGC.fillOval(next, 450, 80, 80);
-					if (AllCharacter.getCharacters().get(3).isAlive()) enemy1GC.drawImage(enermy1Img, enermyX, 200, 100, 100);
-					if (AllCharacter.getCharacters().get(4).isAlive()) enemy2GC.drawImage(enermy2Img, enermyX - 450, 600, 100, 100);
+					if (AllCharacter.getCharacters().get(3).isAlive()) 
+						enemy1GC.drawImage(RenderableHolder.enemy1, enermyX, 200, 100, 100);
+					if (AllCharacter.getCharacters().get(4).isAlive()) 
+						enemy2GC.drawImage(RenderableHolder.enemy2, enermyX - 450, 600, 100, 100);
 				}
 				gc.clearRect(0, 0, 900, 900);
 				gc.drawImage(char1, x, y, 100, 100);
@@ -172,13 +162,15 @@ public class GameScene extends StackPane {
 					bgX += SPEED;
 					next += SPEED;
 					enermyX += SPEED;
-					bgGc.drawImage(img, bgX, bgY, 2000, 900);
+					bgGc.drawImage(RenderableHolder.background1, bgX, bgY, 2000, 900);
 					enermyGC.clearRect(0, 0, 2000, 900);
 					enemy1GC.clearRect(0, 0, 2000, 900);
 					enemy2GC.clearRect(0, 0, 2000, 900);
 					enermyGC.fillOval(next, 450, 80, 80);
-					if (AllCharacter.getCharacters().get(3).isAlive()) enemy1GC.drawImage(enermy1Img, enermyX, 200, 100, 100);
-					if (AllCharacter.getCharacters().get(4).isAlive()) enemy2GC.drawImage(enermy2Img, enermyX - 450, 600, 100, 100);
+					if (AllCharacter.getCharacters().get(3).isAlive()) 
+						enemy1GC.drawImage(RenderableHolder.enemy1, enermyX, 200, 100, 100);
+					if (AllCharacter.getCharacters().get(4).isAlive()) 
+						enemy2GC.drawImage(RenderableHolder.enemy2, enermyX - 450, 600, 100, 100);
 				}
 				gc.clearRect(0, 0, 900, 900);
 				gc.drawImage(char2, x, y, 100, 100);
@@ -210,7 +202,7 @@ public class GameScene extends StackPane {
 					gc.clearRect(0, 0, 2000, 900);
 					bgGc.clearRect(0, 0, 2000, 900);
 					enermyGC.fillOval(next, 450, 80, 80);
-					bgGc.drawImage(img, bgX, bgY, 2000, 900);
+					bgGc.drawImage(RenderableHolder.background1, bgX, bgY, 2000, 900);
 					SceneManagement.switchScene(SceneManagement.playScene);
 					soundManagement.stopGameSound();
 				}
@@ -252,7 +244,7 @@ public class GameScene extends StackPane {
 					
 					@Override
 					public void handle(long now) {
-						enermyGC.drawImage(battle, 0, 0, 900, 900);
+						enermyGC.drawImage(RenderableHolder.battle, 0, 0, 900, 900);
 					}
 				};rr.start();
 		
@@ -266,8 +258,10 @@ public class GameScene extends StackPane {
 					    	enermyGC.clearRect(0, 0, 2000, 900);
 					    	cnt = 0;
 					    	enermyGC.fillOval(next, 450, 80, 80);
-					    	if (AllCharacter.getCharacters().get(3).isAlive()) enemy1GC.drawImage(enermy1Img, enermyX, 200, 100, 100);
-							if (AllCharacter.getCharacters().get(4).isAlive()) enemy2GC.drawImage(enermy2Img, enermyX - 450, 600, 100, 100);
+					    	if (AllCharacter.getCharacters().get(3).isAlive()) 
+					    		enemy1GC.drawImage(RenderableHolder.enemy1, enermyX, 200, 100, 100);
+							if (AllCharacter.getCharacters().get(4).isAlive()) 
+								enemy2GC.drawImage(RenderableHolder.enemy2, enermyX - 450, 600, 100, 100);
 					    	SceneManagement.switchScene(SceneManagement.battleScene);
 					    	soundManagement.battleSound();
 					    	rr.stop();

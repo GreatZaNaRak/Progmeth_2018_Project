@@ -1,8 +1,8 @@
 package application;
 
 import SceneManage.SceneManagement;
+import SharedObject.RenderableHolder;
 import javafx.application.Application;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -14,9 +14,8 @@ public class GAME extends Application {
 	public void start(Stage primaryStage) {
 		sceneManage = new SceneManagement(primaryStage);
 		sceneManage.setUp();
-		
-		Image icon = new Image(ClassLoader.getSystemResource("FFII_PSP_Logo.jpg").toString());
-		primaryStage.getIcons().add(icon);
+			
+		primaryStage.getIcons().add(RenderableHolder.gameIcon);
 		primaryStage.setTitle("FINAL FANTASY II");
 		primaryStage.setWidth(900);
 		primaryStage.setHeight(900);

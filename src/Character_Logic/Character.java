@@ -5,21 +5,23 @@ import java.util.ArrayList;
 public class Character {
 	private String name;
 	private int health;
-	private static int MAXHEALTH;
-	private int damage;
-	private int defend;
+	private int MAXHEALTH;
+	private int damage, default_damage;
+	private int defend, default_defense;
 	private ArrayList<Skill> allSkill;
 	private boolean isAlive;
 	private int mana;
-	private static int MAXMANA;
-	
+	private int MAXMANA;
+
 	public Character(String name, int damage, int defend, int maxhealth, int mana) {
 		allSkill = new ArrayList<>();
 		this.name = name;
-		MAXHEALTH = maxhealth;
+		this.MAXHEALTH = maxhealth;
 		this.health = MAXHEALTH;
 		this.defend = defend;
+		this.default_damage = damage;
 		this.damage = damage;
+		this.default_defense = defend;
 		this.mana = mana;
 		MAXMANA = mana;
 		this.isAlive = true;
@@ -32,8 +34,7 @@ public class Character {
 		if (totaldamage > this.health) {
 			this.health = 0;
 			isAlive = false;
-		}
-		else
+		} else
 			this.health -= totaldamage;
 		return true;
 	}
@@ -65,8 +66,9 @@ public class Character {
 	}
 
 	public void useSkill(int number, Character target) throws InsufficientManaException {
-		if (allSkill.get(number).getConsuming() >= mana) {
+		if (allSkill.get(number).getConsuming() <= this.mana) {
 			allSkill.get(number).skillTo(target);
+			this.mana -= allSkill.get(number).getConsuming();
 		} else {
 			int need = allSkill.get(number).getConsuming() - mana;
 			throw new InsufficientManaException(need);
@@ -77,11 +79,13 @@ public class Character {
 		return name;
 	}
 
-	public int getHeal(int heal) {
-		if (heal + this.health > MAXHEALTH)
-			return MAXHEALTH - heal;
-		else
-			return heal;
+	public void getHeal(int heal) {
+		if (this.isAlive == true) {
+			if (heal + this.health > MAXHEALTH)
+				this.health = MAXHEALTH;
+			else
+				this.health += heal;
+		}
 	}
 
 	public int getHealth() {
@@ -92,18 +96,18 @@ public class Character {
 		return damage;
 	}
 
-	public static int getMAXHEALTH() {
+	public int getMAXHEALTH() {
 		return MAXHEALTH;
 	}
-	
-	public static int getMAXMANA() {
+
+	public int getMAXMANA() {
 		return MAXMANA;
 	}
 
 	public boolean isAlive() {
 		return isAlive;
 	}
-	
+
 	public void setIsAlive(boolean alive) {
 		this.isAlive = alive;
 	}
@@ -130,6 +134,14 @@ public class Character {
 
 	public void setMana(int mana) {
 		this.mana = mana;
+	}
+
+	public int getDefault_damage() {
+		return default_damage;
+	}
+
+	public int getDefault_defense() {
+		return default_defense;
 	}
 
 }
