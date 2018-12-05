@@ -15,6 +15,7 @@ public class RenderableHolder {
 	public static Image char1Dead, char2Dead, char3Dead;
 	public static Image wasd, enemyFound, back, arrowNext, arrowPrev, nextLevel, fightPic;
 	public static AudioClip attacking,buffing,debuffing,tackle,healing;
+	public static Image attacked;
 	
 	static {
 		loadResource();
@@ -71,6 +72,8 @@ public class RenderableHolder {
 		debuffing = new AudioClip(ClassLoader.getSystemResource("Debuff.mp3").toString());
 		tackle = new AudioClip(ClassLoader.getSystemResource("Enemyattacksound.mp3").toString());
 		healing = new AudioClip(ClassLoader.getSystemResource("HEAL SOUND!.mp3").toString());
+		
+		attacked = new Image(ClassLoader.getSystemResource("attacked.png").toString());
 	}
 	
 	

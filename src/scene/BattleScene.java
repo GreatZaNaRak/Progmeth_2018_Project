@@ -23,17 +23,17 @@ import sound.soundManagement;
 
 public class BattleScene extends BorderPane {
 
-	private static GraphicsContext bgGc, enermyGC;
+	private static GraphicsContext bgGc, enemyGC;
 	private static Button back, action, EndTurn, normalAttack, skill1, skill2;
 	public static Label char1health, char2health, char3health, enemyHealth1, enemyHealth2;
 	public static Label enemyHealth3, enemyHealth4, enemyHealth5;
-	
 	private static HBox box;
 	private static AnimationTimer walk;
 	private static VBox skill;
 	public static int turn = 1, skillCount = 1, t1, escapeChance = 1;
-	public static AllCharacter allchar = new AllCharacter();
+	public static AllCharacter allChar = new AllCharacter();
 	private static boolean checkHealing;
+	private static int count_defeated;
 
 	public BattleScene() {
 		
@@ -42,15 +42,16 @@ public class BattleScene extends BorderPane {
 		Canvas bgCavnas = new Canvas(900, 700);
 		bgGc = bgCavnas.getGraphicsContext2D();
 
-		Canvas enermyCanvas = new Canvas(900, 700);
-		enermyGC = enermyCanvas.getGraphicsContext2D();
+		Canvas enemyCanvas = new Canvas(900, 700);
+		enemyGC = enemyCanvas.getGraphicsContext2D();
 		
 		StackPane bg = new StackPane();
 		bg.getChildren().add(bgCavnas);
-		bg.getChildren().add(enermyCanvas);
+		bg.getChildren().add(enemyCanvas);
 		this.setCenter(bg);
 		
 		checkHealing = false;
+		count_defeated = 0;
 
 		// >>>>>>>>>>> stage <<<<<<<<<<<<<<<
 
@@ -89,9 +90,9 @@ public class BattleScene extends BorderPane {
 				+ AllCharacter.getCharacters().get(2).getMana());
 	}
 
-	public static void drawCommandBox(int enermyID) {
+	public static void drawCommandBox(int enemyID) {
 
-		if (GameScene.enermyID <= 4) {
+		if (GameScene.enemyID <= 4) {
 			bgGc.drawImage(RenderableHolder.background1, 0, 0, 900, 700);
 		} else {
 			bgGc.drawImage(RenderableHolder.background2, 0, 0, 900, 700);
@@ -118,127 +119,131 @@ public class BattleScene extends BorderPane {
 		box.setPrefHeight(200);
 		box.setStyle("-fx-background-color : blue");
 
-		// >>>>>>>>>>>>>>>>>>>>>>>>>> Enermy Information  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		// >>>>>>>>>>>>>>>>>>>>>>>>>> Enemy Information  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-		switch (enermyID) {
+		switch (enemyID) {
 		case 3:
-			VBox enermyBox1 = new VBox();
-			enermyBox1.setPrefWidth(280);
-			enermyBox1.setAlignment(Pos.CENTER);
-			enermyBox1.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
+			VBox enemyBox1 = new VBox();
+			enemyBox1.setPrefWidth(280);
+			enemyBox1.setAlignment(Pos.CENTER);
+			enemyBox1.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
 
-			HBox enermyInfo1 = new HBox();
-			enermyInfo1.setSpacing(20);
-			enermyInfo1.setPadding(new Insets(0, 0, 0, 30));
+			HBox enemyInfo1 = new HBox();
+			enemyInfo1.setSpacing(20);
+			enemyInfo1.setPadding(new Insets(0, 0, 0, 30));
 
-			Label enermy1Label = new Label(AllCharacter.getCharacters().get(3).getName());
-			enermy1Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+			Label enemy1Label = new Label(AllCharacter.getCharacters().get(3).getName());
+			enemy1Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 
 			enemyHealth1 = new Label();
 			enemyHealth1.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			enemyHealth1.setText("" + AllCharacter.getCharacters().get(3).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(3).getMAXHEALTH());
 
-			enermyInfo1.getChildren().addAll(enermy1Label, enemyHealth1);
+			enemyInfo1.getChildren().addAll(enemy1Label, enemyHealth1);
 
-			enermyBox1.getChildren().add(enermyInfo1);
-			box.getChildren().add(enermyBox1);
+			enemyBox1.getChildren().add(enemyInfo1);
+			box.getChildren().add(enemyBox1);
 			break;
 		case 4:
-			VBox enermyBox2 = new VBox();
-			enermyBox2.setAlignment(Pos.CENTER);
-			enermyBox2.setPrefWidth(280);
-			enermyBox2.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
+			VBox enemyBox2 = new VBox();
+			enemyBox2.setAlignment(Pos.CENTER);
+			enemyBox2.setPrefWidth(280);
+			enemyBox2.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
 
-			HBox enermyInfo2 = new HBox();
-			enermyInfo2.setSpacing(20);
-			enermyInfo2.setPadding(new Insets(0, 0, 0, 30));
+			HBox enemyInfo2 = new HBox();
+			enemyInfo2.setSpacing(20);
+			enemyInfo2.setPadding(new Insets(0, 0, 0, 30));
 
-			Label enermy2Label = new Label(AllCharacter.getCharacters().get(4).getName());
-			enermy2Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+			Label enemy2Label = new Label(AllCharacter.getCharacters().get(4).getName());
+			enemy2Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 
 			enemyHealth2 = new Label();
 			enemyHealth2.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			enemyHealth2.setText("" + AllCharacter.getCharacters().get(4).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(4).getMAXHEALTH());
 
-			enermyInfo2.getChildren().addAll(enermy2Label, enemyHealth2);
+			enemyInfo2.getChildren().addAll(enemy2Label, enemyHealth2);
 
-			enermyBox2.getChildren().add(enermyInfo2);
+			enemyBox2.getChildren().add(enemyInfo2);
 
-			box.getChildren().add(enermyBox2);
+			box.getChildren().add(enemyBox2);
 			break;
 		case 5:
-			VBox enermyBox3 = new VBox();
-			enermyBox3.setAlignment(Pos.CENTER);
-			enermyBox3.setPrefWidth(280);
-			enermyBox3.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
+			VBox enemyBox3 = new VBox();
+			enemyBox3.setAlignment(Pos.CENTER);
+			enemyBox3.setPrefWidth(280);
+			enemyBox3.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
 
-			HBox enermyInfo3 = new HBox();
-			enermyInfo3.setSpacing(20);
-			enermyInfo3.setPadding(new Insets(0, 0, 0, 30));
+			HBox enemyInfo3 = new HBox();
+			enemyInfo3.setSpacing(20);
+			enemyInfo3.setPadding(new Insets(0, 0, 0, 30));
 
-			Label enermy3Label = new Label(AllCharacter.getCharacters().get(5).getName());
-			enermy3Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+			Label enemy3Label = new Label(AllCharacter.getCharacters().get(5).getName());
+			enemy3Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 
 			enemyHealth3 = new Label();
 			enemyHealth3.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			enemyHealth3.setText("" + AllCharacter.getCharacters().get(5).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(5).getMAXHEALTH());
 
-			enermyInfo3.getChildren().addAll(enermy3Label, enemyHealth3);
+			enemyInfo3.getChildren().addAll(enemy3Label, enemyHealth3);
 
-			enermyBox3.getChildren().add(enermyInfo3);
+			enemyBox3.getChildren().add(enemyInfo3);
 
-			box.getChildren().add(enermyBox3);
+			box.getChildren().add(enemyBox3);
 			break;
 		case 6:
-			VBox enermyBox4 = new VBox();
-			enermyBox4.setAlignment(Pos.CENTER);
-			enermyBox4.setPrefWidth(280);
-			enermyBox4.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
+			VBox enemyBox4 = new VBox();
+			enemyBox4.setAlignment(Pos.CENTER);
+			enemyBox4.setPrefWidth(280);
+			enemyBox4.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
 
-			HBox enermyInfo4 = new HBox();
-			enermyInfo4.setSpacing(20);
-			enermyInfo4.setPadding(new Insets(0, 0, 0, 30));
+			HBox enemyInfo4 = new HBox();
+			enemyInfo4.setSpacing(20);
+			enemyInfo4.setPadding(new Insets(0, 0, 0, 30));
 
-			Label enermy4Label = new Label(AllCharacter.getCharacters().get(6).getName());
-			enermy4Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+			Label enemy4Label = new Label(AllCharacter.getCharacters().get(6).getName());
+			enemy4Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 
 			enemyHealth4 = new Label();
 			enemyHealth4.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 			enemyHealth4.setText("" + AllCharacter.getCharacters().get(6).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(6).getMAXHEALTH());
 
-			enermyInfo4.getChildren().addAll(enermy4Label, enemyHealth4);
+			enemyInfo4.getChildren().addAll(enemy4Label, enemyHealth4);
 
-			enermyBox4.getChildren().add(enermyInfo4);
+			enemyBox4.getChildren().add(enemyInfo4);
 
-			box.getChildren().add(enermyBox4);
+			box.getChildren().add(enemyBox4);
 			break;
 		case 7:
-			VBox enermyBox5 = new VBox();
-			enermyBox5.setAlignment(Pos.CENTER);
-			enermyBox5.setPrefWidth(280);
-			enermyBox5.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
+			VBox enemyBox5 = new VBox();
+			enemyBox5.setAlignment(Pos.CENTER);
+			enemyBox5.setPrefWidth(280);
+			enemyBox5.setStyle("-fx-border-color: white;-fx-border-width: 5;-fx-border-style: solid;");
 
-			HBox enermyInfo5 = new HBox();
-			enermyInfo5.setSpacing(20);
-			enermyInfo5.setPadding(new Insets(0, 0, 0, 30));
+			HBox enemyInfo5 = new HBox();
+			enemyInfo5.setSpacing(20);
+			enemyInfo5.setPadding(new Insets(0, 0, 0, 30));
 
-			Label enermy5Label = new Label(AllCharacter.getCharacters().get(7).getName());
-			enermy5Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+			Label enemy5Label = new Label(AllCharacter.getCharacters().get(7).getName());
+			enemy5Label.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
 
 			enemyHealth5 = new Label();
 			enemyHealth5.setStyle("-fx-font-size : 25;-fx-font-weight: bold");
+			if(count_defeated == 4) {
+				AllCharacter.getCharacters().get(7).setHealth(150);
+				AllCharacter.getCharacters().get(7).setMAXHEALTH(150);
+			}	
 			enemyHealth5.setText("" + AllCharacter.getCharacters().get(7).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(7).getMAXHEALTH());
+			
+			enemyInfo5.getChildren().addAll(enemy5Label, enemyHealth5);
 
-			enermyInfo5.getChildren().addAll(enermy5Label, enemyHealth5);
+			enemyBox5.getChildren().add(enemyInfo5);
 
-			enermyBox5.getChildren().add(enermyInfo5);
-
-			box.getChildren().add(enermyBox5);
+			box.getChildren().add(enemyBox5);
 			break;
 		default:
 			break;
@@ -255,7 +260,7 @@ public class BattleScene extends BorderPane {
 		HBox char1Info = new HBox();
 		char1Info.setSpacing(30);
 		char1Info.setPadding(new Insets(0, 0, 0, 30));
-		Label char1Label = new Label("CLOUD");
+		Label char1Label = new Label("RED");
 		char1Label.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char1health = new Label();
 		char1health.setText("HP: " + AllCharacter.getCharacters().get(0).getHealth() + " MP: "
@@ -266,7 +271,7 @@ public class BattleScene extends BorderPane {
 		HBox char2Info = new HBox();
 		char2Info.setSpacing(30);
 		char2Info.setPadding(new Insets(0, 0, 0, 30));
-		Label char2Label = new Label("TIFA");
+		Label char2Label = new Label("PEARL");
 		char2Label.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char2health = new Label();
 		char2health.setText("HP: " + AllCharacter.getCharacters().get(1).getHealth() + " MP: "
@@ -277,7 +282,7 @@ public class BattleScene extends BorderPane {
 		HBox char3Info = new HBox();
 		char3Info.setSpacing(30);
 		char3Info.setPadding(new Insets(0, 0, 0, 30));
-		Label char3Label = new Label("VINCENT");
+		Label char3Label = new Label("TOMMY");
 		char3Label.setStyle("-fx-font-size : 20;-fx-font-weight: bold");
 		char3health = new Label();
 		char3health.setText("HP: " + AllCharacter.getCharacters().get(2).getHealth() + " MP: "
@@ -328,7 +333,7 @@ public class BattleScene extends BorderPane {
 		box.getChildren().add(skill);
 
 		action.setOnMouseClicked(e -> {
-			eiei();
+			walkingChar();
 			if (turn < 5) {
 				back.setDisable(true);
 			} else {
@@ -339,16 +344,16 @@ public class BattleScene extends BorderPane {
 			case 1:
 				if (skillCount == 1);
 				else skill.getChildren().remove(0, 3);
-				cloudSkill();
+				redSkill();
 				skillCount++;
 				break;
 			case 2:
 				skill.getChildren().remove(0, 3);
-				tifaSkill();
+				pearlSkill();
 				break;
 			case 3:
 				skill.getChildren().remove(0, 3);
-				vincentSkill();
+				tommySkill();
 				break;
 			}
 			action.setDisable(true);
@@ -356,10 +361,10 @@ public class BattleScene extends BorderPane {
 		});
 
 		back.setOnMouseClicked(e -> {
-			enermyGC.clearRect(0, 0, 2000, 900);
+			enemyGC.clearRect(0, 0, 2000, 900);
 			skillCount = 1; escapeChance = 1;
 			resetTurn();
-			if (enermyID <= 4) {
+			if (enemyID <= 4) {
 				soundManagement.stopGameSound();
 				SceneManagement.switchScene(SceneManagement.gameScene);
 				soundManagement.gameSound1();
@@ -381,9 +386,12 @@ public class BattleScene extends BorderPane {
 			if (turn % 4 == 0) {
 				action.setDisable(true);
 				int target = new Random().nextInt(AllCharacter.getMyHero().size());
-				AllCharacter.getCharacters().get(GameScene.enermyID).attack(AllCharacter.getMyHero().get(target));
+				AllCharacter.getCharacters().get(GameScene.enemyID).attack(AllCharacter.getMyHero().get(target));
+				updateEnemyInfo();
 				RenderableHolder.tackle.play();
 			}
+			enemyGC.clearRect(650, 300, 150, 150);
+			drawEnermy();
 			turn++; escapeChance++;
 			update();
 		});
@@ -391,13 +399,14 @@ public class BattleScene extends BorderPane {
 	}
 
 	public static void enemyDied() {
-		switch (GameScene.enermyID) {
+		switch (GameScene.enemyID) {
 		case 3:
 			if (AllCharacter.getCharacters().get(3).getHealth() <= 0) {
 				AllCharacter.getCharacters().get(3).setIsAlive(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setContentText("YOU WIN !!!");
+				alert.setContentText("You win fight against Ogre!!");
 				alert.show();
+				count_defeated++;
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
 				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
 				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
@@ -407,7 +416,7 @@ public class BattleScene extends BorderPane {
 				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
 				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
 				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
-				enermyGC.clearRect(0, 0, 2000, 900);
+				enemyGC.clearRect(0, 0, 2000, 900);
 				GameScene.enemy1GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.gameScene);
 				soundManagement.stopGameSound();
@@ -420,8 +429,9 @@ public class BattleScene extends BorderPane {
 			if (AllCharacter.getCharacters().get(4).getHealth() <= 0) {
 				AllCharacter.getCharacters().get(4).setIsAlive(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setContentText("YOU WIN !!!");
+				alert.setContentText("You win fight against Pyromancer!!");
 				alert.show();
+				count_defeated++;
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
 				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
 				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
@@ -431,7 +441,7 @@ public class BattleScene extends BorderPane {
 				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
 				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
 				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
-				enermyGC.clearRect(0, 0, 2000, 900);
+				enemyGC.clearRect(0, 0, 2000, 900);
 				GameScene.enemy2GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.gameScene);
 				soundManagement.stopGameSound();
@@ -444,8 +454,9 @@ public class BattleScene extends BorderPane {
 			if (AllCharacter.getCharacters().get(5).getHealth() <= 0) {
 				AllCharacter.getCharacters().get(5).setIsAlive(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setContentText("YOU WIN !!!");
+				alert.setContentText("You win fight with skeleton!!");
 				alert.show();
+				count_defeated++;
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
 				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
 				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
@@ -455,7 +466,7 @@ public class BattleScene extends BorderPane {
 				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
 				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
 				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
-				enermyGC.clearRect(0, 0, 2000, 900);
+				enemyGC.clearRect(0, 0, 2000, 900);
 				stage_1.enemy1GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
 				soundManagement.stopGameSound();
@@ -468,8 +479,9 @@ public class BattleScene extends BorderPane {
 			if (AllCharacter.getCharacters().get(6).getHealth() <= 0) {
 				AllCharacter.getCharacters().get(6).setIsAlive(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setContentText("YOU WIN !!!");
+				alert.setContentText("You win fight with Warlock!!");
 				alert.show();
+				count_defeated++;
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
 				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
 				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
@@ -479,7 +491,7 @@ public class BattleScene extends BorderPane {
 				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
 				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
 				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
-				enermyGC.clearRect(0, 0, 2000, 900);
+				enemyGC.clearRect(0, 0, 2000, 900);
 				stage_1.enemy2GC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
 				soundManagement.stopGameSound();
@@ -492,7 +504,7 @@ public class BattleScene extends BorderPane {
 			if (AllCharacter.getCharacters().get(7).getHealth() <= 0) {
 				AllCharacter.getCharacters().get(7).setIsAlive(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setContentText("YOU WIN !!!");
+				alert.setContentText("Congraturation!!You defeat last boss.");
 				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
 				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
@@ -503,7 +515,7 @@ public class BattleScene extends BorderPane {
 				AllCharacter.getCharacters().get(2).setMana(AllCharacter.getCharacters().get(2).getMAXMANA());
 				AllCharacter.getCharacters().get(2).setDamage(AllCharacter.getCharacters().get(2).getDefault_damage());
 				AllCharacter.getCharacters().get(2).setDefend(AllCharacter.getCharacters().get(2).getDefault_defense());
-				enermyGC.clearRect(0, 0, 2000, 900);
+				enemyGC.clearRect(0, 0, 2000, 900);
 				stage_1.bossGC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
 				soundManagement.stopGameSound();
@@ -517,12 +529,12 @@ public class BattleScene extends BorderPane {
 		}
 	}
 
-	public static void eiei() {
+	public static void walkingChar() {
 
-		int du = turn % 4;
-		du--;
-		if (du >= 0) {
-			switch (du) {
+		int char_turn = turn % 4;
+		char_turn--;
+		if (char_turn >= 0) {
+			switch (char_turn) {
 			case 0:
 				walk = new AnimationTimer() {
 					int i = 250;
@@ -534,7 +546,7 @@ public class BattleScene extends BorderPane {
 						if (i == 400)
 							walk.stop();
 						bgGc.clearRect(0, 0, 2000, 900);
-						if (GameScene.enermyID <= 4) {
+						if (GameScene.enemyID <= 4) {
 							bgGc.drawImage(RenderableHolder.background1, 0, 0, 900, 700);
 						} else {
 							
@@ -570,7 +582,7 @@ public class BattleScene extends BorderPane {
 						if (i == 400)
 							walk.stop();
 						bgGc.clearRect(0, 0, 2000, 900);
-						if (GameScene.enermyID <= 4) {
+						if (GameScene.enemyID <= 4) {
 							bgGc.drawImage(RenderableHolder.background1, 0, 0, 900, 700);
 						} else {
 							bgGc.drawImage(RenderableHolder.background2, 0, 0, 900, 700);
@@ -605,7 +617,7 @@ public class BattleScene extends BorderPane {
 						if (i == 400)
 							walk.stop();
 						bgGc.clearRect(0, 0, 2000, 900);
-						if (GameScene.enermyID <= 4) {
+						if (GameScene.enemyID <= 4) {
 							bgGc.drawImage(RenderableHolder.background1, 0, 0, 900, 700);
 						} else {
 							bgGc.drawImage(RenderableHolder.background2, 0, 0, 900, 700);
@@ -632,7 +644,7 @@ public class BattleScene extends BorderPane {
 			}
 		} else {
 			bgGc.clearRect(0, 0, 2000, 900);
-			if (GameScene.enermyID <= 4) {
+			if (GameScene.enemyID <= 4) {
 				bgGc.drawImage(RenderableHolder.background1, 0, 0, 900, 700);
 			} else {
 				bgGc.drawImage(RenderableHolder.background2, 0, 0, 900, 700);
@@ -653,21 +665,21 @@ public class BattleScene extends BorderPane {
 	}
 
 	public static void drawEnermy() {
-		switch (GameScene.enermyID) {
+		switch (GameScene.enemyID) {
 		case 3:
-			enermyGC.drawImage(RenderableHolder.enemy1, 650, 370, 70, 70);
+			enemyGC.drawImage(RenderableHolder.enemy1, 650, 370, 70, 70);
 			break;
 		case 4:
-			enermyGC.drawImage(RenderableHolder.enemy2, 650, 370, 70, 70);
+			enemyGC.drawImage(RenderableHolder.enemy2, 650, 370, 70, 70);
 			break;
 		case 5:
-			enermyGC.drawImage(RenderableHolder.enemy3, 650, 370, 70, 70);
+			enemyGC.drawImage(RenderableHolder.enemy3, 650, 370, 70, 70);
 			break;
 		case 6:
-			enermyGC.drawImage(RenderableHolder.enemy4, 650, 370, 70, 70);
+			enemyGC.drawImage(RenderableHolder.enemy4, 650, 370, 70, 70);
 			break;
 		case 7:
-			enermyGC.drawImage(RenderableHolder.boss, 650, 300, 150, 150);
+			enemyGC.drawImage(RenderableHolder.boss, 650, 300, 150, 150);
 			break;
 		default:
 			System.out.println("..");
@@ -676,38 +688,43 @@ public class BattleScene extends BorderPane {
 	}
 
 	public static void updateEnemyInfo() {
-		switch (GameScene.enermyID) {
+		switch (GameScene.enemyID) {
 		case 3:
-			enemyHealth1.setText("" + AllCharacter.getCharacters().get(GameScene.enermyID).getHealth() + "/"
-					+ AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
+			enemyHealth1.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
+					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 4:
-			enemyHealth2.setText("" + AllCharacter.getCharacters().get(GameScene.enermyID).getHealth() + "/"
-					+ AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
+			enemyHealth2.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
+					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 5:
-			enemyHealth3.setText("" + AllCharacter.getCharacters().get(GameScene.enermyID).getHealth() + "/"
-					+ AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
+			enemyHealth3.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
+					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 6:
-			enemyHealth4.setText("" + AllCharacter.getCharacters().get(GameScene.enermyID).getHealth() + "/"
-					+ AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
+			enemyHealth4.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
+					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 7:
-			enemyHealth5.setText("" + AllCharacter.getCharacters().get(GameScene.enermyID).getHealth() + "/"
-					+ AllCharacter.getCharacters().get(GameScene.enermyID).getMAXHEALTH());
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
+			enemyHealth5.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
+					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		}
 	}
 
-	public static void cloudSkill() {
+	public static void redSkill() {
 		skill1.setText("Slash");
 		skill2.setText("Warcry");
 		normalAttack.setDisable(false);
 		skill1.setDisable(false);
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(0).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
+			AllCharacter.getCharacters().get(0).attack(AllCharacter.getCharacters().get(GameScene.enemyID));
 			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
@@ -718,7 +735,7 @@ public class BattleScene extends BorderPane {
 
 		skill1.setOnMouseClicked(e -> {
 			try {
-				AllCharacter.getCharacters().get(0).useSkill(0, AllCharacter.getCharacters().get(GameScene.enermyID));
+				AllCharacter.getCharacters().get(0).useSkill(0, AllCharacter.getCharacters().get(GameScene.enemyID));
 				RenderableHolder.attacking.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
@@ -758,14 +775,14 @@ public class BattleScene extends BorderPane {
 		}
 	}
 
-	public static void tifaSkill() {
+	public static void pearlSkill() {
 		skill1.setText("Heal");
 		skill2.setText("Fear");
 		normalAttack.setDisable(false);
 		skill1.setDisable(false);
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(1).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
+			AllCharacter.getCharacters().get(1).attack(AllCharacter.getCharacters().get(GameScene.enemyID));
 			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
@@ -795,7 +812,7 @@ public class BattleScene extends BorderPane {
 
 		skill2.setOnMouseClicked(e -> {
 			try {
-				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(GameScene.enermyID));
+				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(GameScene.enemyID));
 				RenderableHolder.debuffing.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block
@@ -818,14 +835,14 @@ public class BattleScene extends BorderPane {
 		}
 	}
 
-	public static void vincentSkill() {
+	public static void tommySkill() {
 		skill1.setText("Tackle");
 		skill2.setText("Resist");
 		normalAttack.setDisable(false);
 		skill1.setDisable(false);
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
-			AllCharacter.getCharacters().get(2).attack(AllCharacter.getCharacters().get(GameScene.enermyID));
+			AllCharacter.getCharacters().get(2).attack(AllCharacter.getCharacters().get(GameScene.enemyID));
 			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
@@ -836,7 +853,7 @@ public class BattleScene extends BorderPane {
 
 		skill1.setOnMouseClicked(e -> {
 			try {
-				AllCharacter.getCharacters().get(2).useSkill(0, AllCharacter.getCharacters().get(GameScene.enermyID));
+				AllCharacter.getCharacters().get(2).useSkill(0, AllCharacter.getCharacters().get(GameScene.enemyID));
 				RenderableHolder.tackle.play();
 			} catch (InsufficientManaException e1) {
 				// TODO Auto-generated catch block

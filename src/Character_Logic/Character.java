@@ -13,10 +13,10 @@ public class Character {
 	private int mana;
 	private int MAXMANA;
 
-	public Character(String name, int damage, int defend, int maxhealth, int mana) {
+	public Character(String name, int damage, int defend, int maxHealth, int mana) {
 		allSkill = new ArrayList<>();
 		this.name = name;
-		this.MAXHEALTH = maxhealth;
+		this.MAXHEALTH = maxHealth;
 		this.health = MAXHEALTH;
 		this.defend = defend;
 		this.default_damage = damage;
@@ -82,9 +82,9 @@ public class Character {
 	public void getHeal(int heal) {
 		if (this.isAlive == true) {
 			if (heal + this.health > MAXHEALTH)
-				this.health = MAXHEALTH;
+				this.setHealth(MAXHEALTH);
 			else
-				this.health += heal;
+				this.setHealth(health+heal);
 		}
 	}
 
@@ -110,6 +110,10 @@ public class Character {
 
 	public void setIsAlive(boolean alive) {
 		this.isAlive = alive;
+	}
+
+	public void setMAXHEALTH(int mAXHEALTH) {
+		MAXHEALTH = mAXHEALTH;
 	}
 
 	public void setHealth(int health) {

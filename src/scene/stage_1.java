@@ -23,7 +23,7 @@ public class stage_1 extends StackPane {
 	
 	private static Canvas canvas;
 	private static AnimationTimer animate;
-	public static GraphicsContext gc, bgGc, enermyGC, enemy1GC, enemy2GC, bossGC;
+	public static GraphicsContext gc, bgGc, enemyGC, enemy1GC, enemy2GC, bossGC;
 	private static final int SPEED = 10; // should be 5
 	private static boolean isHit, isEnemyFound = false;
 	private static int x = 50, y = 450, distanceX = 50, distanceY = 450, previous = -450;
@@ -41,8 +41,8 @@ public class stage_1 extends StackPane {
 		gc = canvas.getGraphicsContext2D();
 		
 		Canvas enermyCanvas = new Canvas(900, 900);
-		enermyGC = enermyCanvas.getGraphicsContext2D();
-		enermyGC.fillOval(previous, 450, 80, 80);
+		enemyGC = enermyCanvas.getGraphicsContext2D();
+		enemyGC.fillOval(previous, 450, 80, 80);
 		
 		Canvas enemy1Canvas = new Canvas(900, 900);
 		enemy1GC = enemy1Canvas.getGraphicsContext2D();
@@ -91,7 +91,7 @@ public class stage_1 extends StackPane {
 					bossX -= SPEED;
 					previous -= SPEED;
 					bgGc.drawImage(RenderableHolder.background2, bgX, bgY, 2000, 900);
-					enermyGC.clearRect(0, 0, 2000, 900);
+					enemyGC.clearRect(0, 0, 2000, 900);
 					enemy2GC.clearRect(0, 0, 2000, 900);
 					enemy1GC.clearRect(0, 0, 2000, 900);
 					bossGC.clearRect(0, 0, 2000, 900);
@@ -101,7 +101,7 @@ public class stage_1 extends StackPane {
 						enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
 					if (AllCharacter.getCharacters().get(7).isAlive()) 
 						bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
-					enermyGC.fillOval(previous, 450, 80, 80);
+					enemyGC.fillOval(previous, 450, 80, 80);
 				}
 				gc.clearRect(0, 0, 900, 900);
 				gc.drawImage(char1, x, y, 100, 100);
@@ -139,7 +139,7 @@ public class stage_1 extends StackPane {
 					bgX += SPEED;
 					previous += SPEED;
 					bgGc.drawImage(RenderableHolder.background2, bgX, bgY, 2000, 900);
-					enermyGC.clearRect(0, 0, 2000, 900);
+					enemyGC.clearRect(0, 0, 2000, 900);
 					enemy2GC.clearRect(0, 0, 2000, 900);
 					enemy1GC.clearRect(0, 0, 2000, 900);
 					bossGC.clearRect(0, 0, 2000, 900);
@@ -149,7 +149,7 @@ public class stage_1 extends StackPane {
 						enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
 					if (AllCharacter.getCharacters().get(7).isAlive()) 
 						bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
-					enermyGC.fillOval(previous, 450, 80, 80);
+					enemyGC.fillOval(previous, 450, 80, 80);
 				}
 				gc.clearRect(0, 0, 900, 900);
 				gc.drawImage(char2, x, y, 100, 100);
@@ -179,14 +179,14 @@ public class stage_1 extends StackPane {
 				soundManagement.enterFightSound();
 				soundManagement.stopGameSound();
 				BattleScene.drawEnermy();
-				BattleScene.drawCommandBox(GameScene.enermyID);
+				BattleScene.drawCommandBox(GameScene.enemyID);
 				BattleScene.resetTurn();
 				SceneManagement.battle.setBottom(SceneManagement.battle.getBox());
 				AnimationTimer rr = new AnimationTimer() {
 					
 					@Override
 					public void handle(long now) {
-						enermyGC.drawImage(RenderableHolder.battle, 0, 0, 900, 900);
+						enemyGC.drawImage(RenderableHolder.battle, 0, 0, 900, 900);
 					}
 				};rr.start();
 		
@@ -198,7 +198,7 @@ public class stage_1 extends StackPane {
 					    	GameScene.cnt = 1;
 					    }),
 					    new KeyFrame(Duration.seconds(2.2), e1 -> { 
-					    	enermyGC.clearRect(0, 0, 2000, 900);
+					    	enemyGC.clearRect(0, 0, 2000, 900);
 					    	GameScene.cnt = 0;
 					    	if (AllCharacter.getCharacters().get(5).isAlive()) 
 					    		enemy1GC.drawImage(RenderableHolder.enemy3, enemy3X, 450, 100, 100);
@@ -206,9 +206,9 @@ public class stage_1 extends StackPane {
 								enemy2GC.drawImage(RenderableHolder.enemy4, enemy4X, 650, 100, 100);
 							if (AllCharacter.getCharacters().get(7).isAlive()) 
 								bossGC.drawImage(RenderableHolder.boss, bossX, 220, 150, 150);
-					    	enermyGC.fillOval(previous, 450, 80, 80);
+					    	enemyGC.fillOval(previous, 450, 80, 80);
 					    	SceneManagement.switchScene(SceneManagement.battleScene);
-					    	if (GameScene.enermyID == 7) {
+					    	if (GameScene.enemyID == 7) {
 					    		soundManagement.bossSound();
 					    	} else {
 					    		soundManagement.battleSound();
@@ -232,7 +232,7 @@ public class stage_1 extends StackPane {
 					if (AllCharacter.getCharacters().get(5).isAlive()) {
 						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnemyFound = true;
-						GameScene.enermyID = 5;
+						GameScene.enemyID = 5;
 					} else {
 						isEnemyFound = false;
 					}
@@ -240,7 +240,7 @@ public class stage_1 extends StackPane {
 					if (AllCharacter.getCharacters().get(6).isAlive()) {
 						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnemyFound = true;
-						GameScene.enermyID = 6;
+						GameScene.enemyID = 6;
 					} else {
 						isEnemyFound = false;
 					}
@@ -248,13 +248,13 @@ public class stage_1 extends StackPane {
 					if (AllCharacter.getCharacters().get(7).isAlive()) {
 						gc.drawImage(RenderableHolder.exclamation, x + 22, y - 60, 62, 62);
 						isEnemyFound = true;
-						GameScene.enermyID = 7;
+						GameScene.enemyID = 7;
 					} else {
 						isEnemyFound = false;
 					}
 				} else {
 					isEnemyFound = false;
-					GameScene.enermyID = 0;
+					GameScene.enemyID = 0;
 					animate.stop();
 				}
 			}

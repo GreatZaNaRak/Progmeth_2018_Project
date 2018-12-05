@@ -1,9 +1,9 @@
 package scene;
 
-import Character_Animate.Cloud;
-import Character_Animate.Tifa;
-import Character_Animate.Vincent;
-import Character_Animate.ready;
+import Character_Animate.Red;
+import Character_Animate.Pearl;
+import Character_Animate.Tommy;
+import Character_Animate.Ready;
 import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
 import SharedObject.RenderableHolder;
@@ -24,10 +24,10 @@ import sound.soundManagement;
 public class PlayScene extends BorderPane{
 	
 	private Label sceneLabel;
-	private Cloud cloud;
-	private Tifa tifa;
-	private Vincent vincent;
-	private ready ready;
+	private Red red;
+	private Pearl pearl;
+	private Tommy tommy;
+	private Ready ready;
 	private VBox CharacterSelected;
 	private HBox firstChar, secondChar, thirdChar;
 	private GraphicsContext firstGC, secondGC, thirdGC;
@@ -64,10 +64,10 @@ public class PlayScene extends BorderPane{
 		// >>>>>>>>>>> Center Center pane <<<<<<<<<<<<<<<<<<
 		
 	
-		cloud = new Cloud();
-		tifa = new Tifa();
-		vincent = new Vincent();
-		ready = new ready();
+		red = new Red();
+		pearl = new Pearl();
+		tommy = new Tommy();
+		ready = new Ready();
 		
 		// >>>>>>>>>>> Center Center pane <<<<<<<<<<<<<<<<<<
 		
@@ -107,7 +107,7 @@ public class PlayScene extends BorderPane{
 		
 		Canvas firstCanvas = new Canvas(200, 200);
 		firstGC = firstCanvas.getGraphicsContext2D();
-		label1 = new Text("Cloud ");
+		label1 = new Text("Red ");
 		label1.setFont(Font.font(30));
 		
 		firstChar.getChildren().addAll(firstCanvas, label1);
@@ -120,7 +120,7 @@ public class PlayScene extends BorderPane{
 		
 		Canvas secondCanvas = new Canvas(200, 200);
 		secondGC = secondCanvas.getGraphicsContext2D();
-		label2 = new Text("Tifa     ");
+		label2 = new Text("Pearl     ");
 		label2.setFont(Font.font(30));
 		
 		secondChar.getChildren().addAll(secondCanvas, label2);
@@ -133,7 +133,7 @@ public class PlayScene extends BorderPane{
 		
 		Canvas thirdCanvas = new Canvas(200, 200);
 		thirdGC = thirdCanvas.getGraphicsContext2D();
-		label3 = new Text("Vincent");
+		label3 = new Text("Tommy");
 		label3.setFont(Font.font(30));
 		
 		thirdChar.getChildren().addAll(thirdCanvas, label3);
@@ -233,14 +233,14 @@ public class PlayScene extends BorderPane{
 			soundManagement.charSelect();
 			label1.setFill(Color.RED);
 			label1.setStyle("-fx-font-weight : bolder");
-			information.setCenter(cloud);
-			cloud.set();
+			information.setCenter(red);
+			red.set();
 		});
 		
 		firstChar.setOnMouseExited(e -> {
 			label1.setFill(Color.BLACK);
 			label1.setStyle("-fx-font-weight : normal");
-			cloud.clear();
+			red.clear();
 		});
 		
 		firstChar.setOnMouseClicked(e -> {
@@ -260,14 +260,14 @@ public class PlayScene extends BorderPane{
 			soundManagement.charSelect();
 			label2.setFill(Color.RED);
 			label2.setStyle("-fx-font-weight : bolder");
-			information.setCenter(tifa);
-			tifa.set();
+			information.setCenter(pearl);
+			pearl.set();
 		});
 		
 		secondChar.setOnMouseExited(e -> {
 			label2.setFill(Color.BLACK);
 			label2.setStyle("-fx-font-weight : normal");
-			tifa.clear();
+			pearl.clear();
 		});
 		
 		secondChar.setOnMouseClicked(e -> {
@@ -287,14 +287,14 @@ public class PlayScene extends BorderPane{
 			soundManagement.charSelect();
 			label3.setFill(Color.RED);
 			label3.setStyle("-fx-font-weight : bolder");
-			information.setCenter(vincent);
-			vincent.set();
+			information.setCenter(tommy);
+			tommy.set();
 		});
 		
 		thirdChar.setOnMouseExited(e -> {
 			label3.setFill(Color.BLACK);
 			label3.setStyle("-fx-font-weight : normal");
-			vincent.clear();
+			tommy.clear();
 		});
 		
 		thirdChar.setOnMouseClicked(e -> {

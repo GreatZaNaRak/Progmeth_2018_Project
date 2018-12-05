@@ -20,8 +20,8 @@ public class HintSceen3 extends VBox{
 		this.setSpacing(100);
 		this.setStyle("-fx-background-color : black");
 		
-		Label finalCall = new Label("\t\tOne Last Hint!!\nif you found that the boss is too\npowerfull"
-				+ " try to kill all the guardian\nin the map.....  GOOD LUCK!!! XD");
+		Label finalCall = new Label("\t\tOne Last Hint!!\nIf you found that the boss is too\npowerful"
+				+ " try to kill all other enemy\nin the map first.....  GOOD LUCK!!! XD");
 		finalCall.setStyle("-fx-font-size : 50; -fx-font-weight : bold; -fx-font-color : white");
 		
 		HBox buttons = new HBox();

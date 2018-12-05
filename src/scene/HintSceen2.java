@@ -23,7 +23,7 @@ public class HintSceen2 extends VBox{
 		fightPicture.setFitHeight(600); fightPicture.setFitWidth(900);
 		
 		Label infor = new Label("During fight each turn you have to press action to do\n"
-				+ "attack or buff. you can't do action if it is enemy turn\n"
+				+ "attack or using skill. You can't do action if it is enemy turn\n"
 				+ "or your character is dead");
 		infor.setStyle("-fx-font-size : 35; -fx-font-weight : bold");
 		

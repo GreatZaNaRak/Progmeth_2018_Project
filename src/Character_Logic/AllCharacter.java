@@ -11,31 +11,31 @@ public class AllCharacter {
 
 	public AllCharacter() {
 
-		Character cloud = new Character("Cloud", 35, 15, 180, 100);
-		cloud.addSkill("Slash", 25, "damage", 50, "-");
-		cloud.addSkill("Warcry", 50, "buff", 30, "attack");
+		Character Red = new Character("Red", 35, 15, 180, 100);
+		Red.addSkill("Slash", 25, "damage", 50, "-");
+		Red.addSkill("Warcry", 50, "buff", 30, "attack");
 
-		Character tifa = new Character("Tifa", 28, 7, 120, 200);
-		tifa.addSkill("Heal", 50, "heal", 40, "-");
-		tifa.addSkill("Fear", 70, "debuff", 35, "defense");
+		Character Pearl = new Character("Pearl", 28, 7, 120, 200);
+		Pearl.addSkill("Heal", 50, "heal", 40, "-");
+		Pearl.addSkill("Fear", 70, "debuff", 35, "defense");
 
-		Character vincent = new Character("Vincent", 30, 10, 150, 150);
-		vincent.addSkill("Tackle", 50, "damage", 50, "-");
-		vincent.addSkill("Resist", 50, "debuff", 35, "defense");
+		Character Tommy = new Character("Tommy", 30, 10, 150, 150);
+		Tommy.addSkill("Tackle", 50, "damage", 50, "-");
+		Tommy.addSkill("Resist", 50, "debuff", 35, "defense");
 
-		myHero.add(cloud);
-		myHero.add(tifa);
-		myHero.add(vincent);
+		myHero.add(Red);
+		myHero.add(Pearl);
+		myHero.add(Tommy);
 
 		Character ogre = new Character("Ogre", 60, 22, 200, 0);
 		Character pyro = new Pyromancer("Pyro", 30, 10, 150, 0);
 		Character skeleton = new Skeleton("Skeleton", 40, 10, 150, 0);
-		Character warlock = new Bat("Warlock", 40, 10, 150, 0);
-		Character boss = new Boss("Boss", 20, 8, 150, 0);
+		Character warlock = new Warlock("Warlock", 40, 10, 150, 0);
+		Character boss = new Boss("Boss", 20, 8, 1000, 0);
 
-		Characters.add(cloud);
-		Characters.add(tifa);
-		Characters.add(vincent);
+		Characters.add(Red);
+		Characters.add(Pearl);
+		Characters.add(Tommy);
 		Characters.add(ogre);
 		Characters.add(pyro);
 		Characters.add(skeleton);

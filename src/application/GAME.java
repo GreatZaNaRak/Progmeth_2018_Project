@@ -16,7 +16,7 @@ public class GAME extends Application {
 		sceneManage.setUp();
 			
 		primaryStage.getIcons().add(RenderableHolder.gameIcon);
-		primaryStage.setTitle("FINAL FANTASY II");
+		primaryStage.setTitle("CP::MONSTER FANTASY");
 		primaryStage.setWidth(900);
 		primaryStage.setHeight(900);
 		primaryStage.show();

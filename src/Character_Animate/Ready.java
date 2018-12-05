@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 
-public class ready extends VBox{
+public class Ready extends VBox{
 	Label esc, go;
 	
-	public ready() {
+	public Ready() {
 		// TODO Auto-generated constructor stub
 		this.setAlignment(Pos.CENTER);
 		this.setSpacing(30);

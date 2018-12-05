@@ -38,7 +38,7 @@ public class MenuScene extends BorderPane {
 		buttons.setAlignment(Pos.BOTTOM_CENTER);
 		buttons.setPadding(new Insets(50, 50, 50, 50));
 		
-		Text gameTitle = new Text("FINAL FANTASY X2");
+		Text gameTitle = new Text("CP::MONSTER FANTASY");
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
 		gameTitle.setStyle("-fx-font-weigt: bold; -fx-font-size : 75; -fx-fill :"
 				+ "linear-gradient(from 0% 0% to 100% 200%, repeat, orange 30%, red 50%);");

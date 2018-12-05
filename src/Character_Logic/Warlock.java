@@ -1,15 +1,15 @@
 package Character_Logic;
 
-public class Bat extends Character{
+public class Warlock extends Character{
 	
-	public Bat(String name,int damage, int defend, int maxhealth, int mana) {
+	public Warlock(String name,int damage, int defend, int maxhealth, int mana) {
 		super(name,damage,defend,maxhealth,mana);
 	}
 	
 	@Override
 	public boolean attack(Character target) {
 		if(super.attack(target))
-			this.getHeal(getDamage()*20/100);
+			this.getHeal(getDamage()*50/100);
 		return false;
 	}
 }
