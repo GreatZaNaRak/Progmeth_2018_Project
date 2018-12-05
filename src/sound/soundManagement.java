@@ -26,7 +26,7 @@ public class soundManagement {
 					media = new MediaPlayer(sound);
 					media.setAutoPlay(true);
 					media.setCycleCount(Animation.INDEFINITE);
-					media.setVolume(0.2);
+					media.setVolume(1);
 					media.play();
 			}
 		});bgMusic.start();
@@ -69,7 +69,7 @@ public class soundManagement {
 				// TODO Auto-generated method stub
 				Media hit = new Media(ClassLoader.getSystemResource("normal1.wav").toString());
 				gameSound = new MediaPlayer(hit);
-				gameSound.setVolume(0.4);
+				gameSound.setVolume(1);
 				gameSound.setAutoPlay(true);
 				gameSound.setCycleCount(Animation.INDEFINITE);
 				gameSound.setStartTime(Duration.seconds(2.5));
@@ -89,7 +89,7 @@ public class soundManagement {
 				// TODO Auto-generated method stub
 				Media hit = new Media(ClassLoader.getSystemResource("normal2.wav").toString());
 				gameSound = new MediaPlayer(hit);
-				gameSound.setVolume(0.4);
+				gameSound.setVolume(1);
 				gameSound.setAutoPlay(true);
 				gameSound.setCycleCount(Animation.INDEFINITE);
 				gameSound.setStartTime(Duration.seconds(2.5));

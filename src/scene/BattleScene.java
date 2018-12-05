@@ -690,27 +690,22 @@ public class BattleScene extends BorderPane {
 	public static void updateEnemyInfo() {
 		switch (GameScene.enemyID) {
 		case 3:
-			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyHealth1.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 4:
-			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyHealth2.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 5:
-			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyHealth3.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 6:
-			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyHealth4.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
 		case 7:
-			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyHealth5.setText("" + AllCharacter.getCharacters().get(GameScene.enemyID).getHealth() + "/"
 					+ AllCharacter.getCharacters().get(GameScene.enemyID).getMAXHEALTH());
 			break;
@@ -725,6 +720,7 @@ public class BattleScene extends BorderPane {
 		skill2.setDisable(false);
 		normalAttack.setOnMouseClicked(e -> {
 			AllCharacter.getCharacters().get(0).attack(AllCharacter.getCharacters().get(GameScene.enemyID));
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			RenderableHolder.attacking.play();
 			updateEnemyInfo();
 			enemyDied();
@@ -744,6 +740,7 @@ public class BattleScene extends BorderPane {
 				alert.showAndWait();
 			}
 			updateEnemyInfo();
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyDied();
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);
@@ -784,6 +781,7 @@ public class BattleScene extends BorderPane {
 		normalAttack.setOnMouseClicked(e -> {
 			AllCharacter.getCharacters().get(1).attack(AllCharacter.getCharacters().get(GameScene.enemyID));
 			RenderableHolder.attacking.play();
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -793,7 +791,7 @@ public class BattleScene extends BorderPane {
 
 		skill1.setOnMouseClicked(e -> {
 			try {
-				AllCharacter.getCharacters().get(1).useSkill(1, AllCharacter.getCharacters().get(0));
+				AllCharacter.getCharacters().get(1).useSkill(0, AllCharacter.getCharacters().get(0));
 				AllCharacter.getCharacters().get(0).getHeal(40);
 				AllCharacter.getCharacters().get(1).getHeal(40);
 				AllCharacter.getCharacters().get(2).getHeal(40);
@@ -844,6 +842,7 @@ public class BattleScene extends BorderPane {
 		normalAttack.setOnMouseClicked(e -> {
 			AllCharacter.getCharacters().get(2).attack(AllCharacter.getCharacters().get(GameScene.enemyID));
 			RenderableHolder.attacking.play();
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			updateEnemyInfo();
 			enemyDied();
 			normalAttack.setDisable(true);
@@ -862,6 +861,7 @@ public class BattleScene extends BorderPane {
 				alert.showAndWait();
 			}
 			updateEnemyInfo();
+			enemyGC.drawImage(RenderableHolder.attacked, 650, 370, 70, 70);
 			enemyDied();
 			normalAttack.setDisable(true);
 			skill1.setDisable(true);

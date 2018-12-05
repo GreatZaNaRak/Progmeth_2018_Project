@@ -1,22 +1,14 @@
 package scene;
 
-import java.util.Optional;
-
 import Character_Animate.Character_Ani;
 import Character_Logic.AllCharacter;
 import SceneManage.SceneManagement;
 import SharedObject.RenderableHolder;
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
@@ -225,7 +217,7 @@ public class GameScene extends StackPane {
 				BattleScene.resetTurn();
 				BattleScene.drawCommandBox(enemyID);
 				BattleScene.resetTurn();
-				SceneManagement.battle.setBottom(SceneManagement.battle.getBox());
+				SceneManagement.battle.setBottom(BattleScene.getBox());
 				AnimationTimer rr = new AnimationTimer() {
 					
 					@Override
@@ -237,12 +229,14 @@ public class GameScene extends StackPane {
 				Timeline timeline = new Timeline(
 					    new KeyFrame(Duration.ZERO, e1 -> {
 					    	cnt = 1;
+					    	gc.clearRect(0, 0, 2000, 900);
 					    	enemy1GC.clearRect(0, 0, 2000, 900);
 					    	enemy2GC.clearRect(0, 0, 2000, 900);
 					    }),
 					    new KeyFrame(Duration.seconds(2.2), e1 -> { 
 					    	enemyGC.clearRect(0, 0, 2000, 900);
 					    	cnt = 0;
+					    	drawChar(PlayScene.CharToPlay);
 					    	enemyGC.fillOval(next, 450, 80, 80);
 					    	if (AllCharacter.getCharacters().get(3).isAlive()) 
 					    		enemy1GC.drawImage(RenderableHolder.enemy1, enermyX, 200, 100, 100);

@@ -13,4 +13,7 @@ public class HealSkill extends Skill{
 		// TODO Auto-generated method stub
 	}
 	
+	public int getHeal() {
+		return heal;
+	}
 }

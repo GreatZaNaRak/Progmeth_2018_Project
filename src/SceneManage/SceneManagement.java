@@ -18,7 +18,7 @@ public class SceneManagement {
 	private static Stage primaryStage;
 	private static MenuScene menu = new MenuScene();
 	private static CreditScene Credit = new CreditScene();
-	private static Character_Ani charAni = new Character_Ani();
+	public static Character_Ani charAni = new Character_Ani();
 	private static PlayScene play = new PlayScene();
 	public static GameScene game = new GameScene();
 	public static stage_1 stage1 = new stage_1();

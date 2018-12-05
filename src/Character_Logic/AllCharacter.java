@@ -2,8 +2,6 @@ package Character_Logic;
 
 import java.util.ArrayList;
 
-import scene.PlayScene;
-
 public class AllCharacter {
 
 	private static ArrayList<Character> Characters = new ArrayList<>();
@@ -31,7 +29,7 @@ public class AllCharacter {
 		Character pyro = new Pyromancer("Pyro", 30, 10, 150, 0);
 		Character skeleton = new Skeleton("Skeleton", 40, 10, 150, 0);
 		Character warlock = new Warlock("Warlock", 40, 10, 150, 0);
-		Character boss = new Boss("Boss", 20, 8, 1000, 0);
+		Character boss = new Boss("Boss", 20, 8, 5000, 0);
 
 		Characters.add(Red);
 		Characters.add(Pearl);
