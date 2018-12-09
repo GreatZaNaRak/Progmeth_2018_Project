@@ -187,10 +187,20 @@ public class stage_1 extends StackPane {
 		
 				Timeline timeline = new Timeline(
 					    new KeyFrame(Duration.ZERO, e1 -> {
-					    	gc.clearRect(0, 0, 2000, 900);
-					    	enemy2GC.clearRect(0, 0, 2000, 900);
-							enemy1GC.clearRect(0, 0, 2000, 900);
-							bossGC.clearRect(0, 0, 2000, 900);
+					    	switch (GameScene.enemyID) {
+					    	case 5:
+					    		bossGC.clearRect(0, 0, 2000, 900);
+					    		enemy2GC.clearRect(0, 0, 2000, 900);
+					    		break;
+					    	case 6:
+					    		enemy1GC.clearRect(0, 0, 2000, 900);
+					    		bossGC.clearRect(0, 0, 2000, 900);
+					    		break;
+					    	case 7:
+					    		enemy2GC.clearRect(0, 0, 2000, 900);
+								enemy1GC.clearRect(0, 0, 2000, 900);
+					    		break;
+					    	}
 					    	GameScene.cnt = 1;
 					    }),
 					    new KeyFrame(Duration.seconds(2.2), e1 -> { 

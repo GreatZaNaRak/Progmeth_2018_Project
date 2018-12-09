@@ -186,7 +186,6 @@ public class GameScene extends StackPane {
 				hitEnermy();
 				
 			} else if (e.getCode() == KeyCode.SPACE && isHit) {
-				System.out.println("GotCha!!");
 				soundManagement.enterSound();
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
 				soundManagement.stopGameSound();
@@ -229,9 +228,14 @@ public class GameScene extends StackPane {
 				Timeline timeline = new Timeline(
 					    new KeyFrame(Duration.ZERO, e1 -> {
 					    	cnt = 1;
-					    	gc.clearRect(0, 0, 2000, 900);
-					    	enemy1GC.clearRect(0, 0, 2000, 900);
-					    	enemy2GC.clearRect(0, 0, 2000, 900);
+					    	switch (enemyID) {
+					    	case 3:
+					    		enemy2GC.clearRect(0, 0, 2000, 900);
+					    		break;
+					    	case 4:
+					    		enemy1GC.clearRect(0, 0, 2000, 900);
+					    		break;
+					    	}
 					    }),
 					    new KeyFrame(Duration.seconds(2.2), e1 -> { 
 					    	enemyGC.clearRect(0, 0, 2000, 900);
@@ -248,7 +252,7 @@ public class GameScene extends StackPane {
 					    	})
 					);
 					timeline.play();
-			}
+			} 
 		});
 	}
 	

@@ -24,15 +24,15 @@ public class CreditScene extends VBox{
 		this.setAlignment(Pos.CENTER);
 		
 		
-		Text great = new Text("Great");
-		great.setStyle("-fx-font-size : 50");
+		Text great = new Text("Rattapong Whangthanrongwit\t6030499121");
+		great.setStyle("-fx-font-size : 40");
 		great.setStroke(Color.BLACK);
 		great.setStrokeWidth(3);
 		great.setFill(Color.WHITE);
 		great.setFont(Font.font("Comic Sans MS"));
 		
-		Text monde = new Text("Monde");
-		monde.setStyle("-fx-font-size : 50");
+		Text monde = new Text("Mavin Siangyai\t\t6030475021");
+		monde.setStyle("-fx-font-size : 40");
 		monde.setStroke(Color.BLACK);
 		monde.setStrokeWidth(3);
 		monde.setFill(Color.WHITE);

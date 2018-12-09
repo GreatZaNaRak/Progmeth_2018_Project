@@ -2,6 +2,7 @@ package Character_Logic;
 
 import java.util.ArrayList;
 
+
 public class AllCharacter {
 
 	private static ArrayList<Character> Characters = new ArrayList<>();

@@ -6,6 +6,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -15,6 +16,24 @@ import javafx.util.Duration;
 
 
 public class DrawMenuScene extends Canvas{
+	
+	public static MediaPlayer test;
+	
+	public static void setEndCredit(StackPane root) {
+		
+		test = new MediaPlayer(new Media(ClassLoader.getSystemResource("endcredit.mp4").toString()));
+		MediaView mm = new MediaView(test);
+		mm.setFitWidth(900);
+		
+		
+		mm.setFitHeight(900);
+		mm.setManaged(true);
+		
+		test.setStartTime(Duration.seconds(0.2));
+		test.setStopTime(Duration.seconds(60));
+		root.getChildren().add(mm);
+		
+	}
 	
 	public static void setBG(BorderPane centerPane) {
 		

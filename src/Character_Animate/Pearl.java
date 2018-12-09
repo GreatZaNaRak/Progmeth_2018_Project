@@ -15,7 +15,7 @@ public class Pearl extends VBox{
 		this.setPadding(new Insets(15, 15, 15, 15));
 		this.setStyle("-fx-font-size : 30");
 		name = new Label("Name : Pearl");
-		talent = new Label("She is cute and kind.");
+		talent = new Label("\"She is cute and kind.\"");
 		skill1 = new Label("Skill1 \"Heal\" :\n\tHeal all hero\n\theal point = 40.");
 		skill2 = new Label("Skill2 \"Fear\" :\n\tDecrease enemy attack point\n\tby 35%.");
 		special = new Label("Special : If selected all Character\n\tHealh increase by 50.");

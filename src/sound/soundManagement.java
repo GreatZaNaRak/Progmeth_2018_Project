@@ -58,6 +58,7 @@ public class soundManagement {
 		Media hit = new Media(ClassLoader.getSystemResource("charConfirmed.wav").toString());
 		confirmSound = new MediaPlayer(hit);
 		confirmSound.setStartTime(Duration.seconds(0));
+		confirmSound.setVolume(0.2);
 		confirmSound.play();
 	}
 	

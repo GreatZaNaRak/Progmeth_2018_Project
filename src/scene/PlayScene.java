@@ -107,7 +107,7 @@ public class PlayScene extends BorderPane{
 		
 		Canvas firstCanvas = new Canvas(200, 200);
 		firstGC = firstCanvas.getGraphicsContext2D();
-		label1 = new Text("Red ");
+		label1 = new Text("Red       ");
 		label1.setFont(Font.font(30));
 		
 		firstChar.getChildren().addAll(firstCanvas, label1);

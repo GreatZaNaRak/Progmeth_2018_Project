@@ -28,8 +28,10 @@ public class Boss extends Character implements Reicarnation {
 		// TODO Auto-generated method stub
 		this.life--;
 		this.setHealth(this.getMAXHEALTH());
-		this.setDamage(getDamage()*2);
-		this.setDefend(getDefend()*2);
+		if (life >= 1) {
+			this.setDamage(getDamage()*2);
+			this.setDefend(getDefend()*2);
+		}
 		this.setMana(getMAXMANA());
 	}
 	

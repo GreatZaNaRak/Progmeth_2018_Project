@@ -16,7 +16,7 @@ public class Red extends VBox{
 		this.setPadding(new Insets(15, 15, 15, 15));
 		this.setStyle("-fx-font-size : 30");
 		name = new Label("Name : Red");
-		talent = new Label("He is handsome and brave.");
+		talent = new Label("\"He is handsome and brave.\"");
 		skill1 = new Label("Skill1 \"Slash\" :\n\tHit enemy with powerful slash\n\tDamage = 50.");
 		skill2 = new Label("Skill2 \"Warcry\" :\n\tIncrease Attack damage\n\tAttack increase by 30%.");
 		special = new Label("Special : If selected all character\n\tattack increase by 5.");

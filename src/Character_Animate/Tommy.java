@@ -15,7 +15,7 @@ public class Tommy extends VBox{
 		this.setPadding(new Insets(15, 15, 15, 15));
 		this.setStyle("-fx-font-size : 30");
 		name = new Label("Name : Tommy");
-		talent = new Label("He is brave and powerful.");
+		talent = new Label("\"He is brave and powerful.\"");
 		skill1 = new Label("Skill1 \"Tackle\" :\nHit enemy with powerful slash\n\tDamage = 50.");
 		skill2 = new Label("Skill2 \"Resist\" :\n\tIncrease defend power\n\tDefend increase by 35%.");
 		special = new Label("Special : If selected all Character\n\tDefend increase by 5.");

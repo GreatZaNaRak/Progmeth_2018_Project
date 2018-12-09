@@ -505,7 +505,6 @@ public class BattleScene extends BorderPane {
 				AllCharacter.getCharacters().get(7).setIsAlive(false);
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setContentText("Congraturation!!You defeat last boss.");
-				alert.show();
 				AllCharacter.getCharacters().get(0).setMana(AllCharacter.getCharacters().get(0).getMAXMANA());
 				AllCharacter.getCharacters().get(0).setDamage(AllCharacter.getCharacters().get(0).getDefault_damage());
 				AllCharacter.getCharacters().get(0).setDefend(AllCharacter.getCharacters().get(0).getDefault_defense());
@@ -519,7 +518,10 @@ public class BattleScene extends BorderPane {
 				stage_1.bossGC.clearRect(0, 0, 2000, 900);
 				SceneManagement.switchScene(SceneManagement.stage1Scene);
 				soundManagement.stopGameSound();
-				soundManagement.gameSound2();
+				alert.showAndWait();
+				SceneManagement.switchScene(SceneManagement.endScene);
+				SceneManagement.end.run();
+				//soundManagement.gameSound2();
 				resetTurn();
 				skillCount = 1; escapeChance = 1;
 			}

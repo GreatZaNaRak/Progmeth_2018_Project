@@ -11,6 +11,7 @@ import scene.HintSceen2;
 import scene.HintSceen3;
 import scene.MenuScene;
 import scene.PlayScene;
+import scene.endScene;
 import scene.stage_1;
 
 public class SceneManagement {
@@ -26,6 +27,7 @@ public class SceneManagement {
 	private static HintSceen hint = new HintSceen();
 	private static HintSceen2 hint2 = new HintSceen2();
 	private static HintSceen3 hint3 = new HintSceen3();
+	public static endScene end = new endScene();
 	
 	public static Scene menuScene = new Scene(menu);
 	public static Scene creditScene = new Scene(Credit);
@@ -36,6 +38,7 @@ public class SceneManagement {
 	public static Scene hintScene = new Scene(hint);
 	public static Scene hintScene2 = new Scene(hint2);
 	public static Scene hintScene3 = new Scene(hint3);
+	public static Scene endScene = new Scene(end);
 	
 	public SceneManagement(Stage stage) {
 		primaryStage = stage;
